@@ -1,0 +1,28 @@
+.searchBar {
+  /* flex: 4; */
+  /* flex: 0 1 700px; */
+  position: relative;
+  border-radius: 10px;
+  background-color: #e5eaf2;
+}
+#search {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 10px 40px;
+  background-color: #dde8f9;
+  color: #666;
+  font-size: 0.9rem;
+}
+.fas {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+input[type="search"]:focus {
+  outline: none;
+  border: none;
+}
