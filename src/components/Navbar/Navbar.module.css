@@ -14,8 +14,12 @@
 
 .navLeft {
   border: 2px solid white;
+  padding: 10px 0;
 }
 
 .navRight {
   border: 2px solid white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0px;
 }
