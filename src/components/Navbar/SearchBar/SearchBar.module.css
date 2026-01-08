@@ -1,6 +1,7 @@
 .searchBar {
   /* flex: 4; */
-  /* flex: 0 1 700px; */
+  flex: 0 1 700px;
+  /* flex: 1; */
   position: relative;
   border-radius: 10px;
   background-color: #e5eaf2;

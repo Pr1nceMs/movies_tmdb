@@ -1,58 +1,39 @@
 import React from "react";
-
+import styles from "./Sidebar.module.css";
+import ItemList from "./Menu/ItemList/ItemList";
+import Menu from "./Menu/Menu";
+import Logo from "./Logo/Logo";
+import LogoStyles from "./Logo/Logo.module.css";
+import MenuStyles from "./Menu/Menu.module.css";
+import SearchStyles from "./Search/Search.module.css";
+import Search from "./Search/Search";
 const Sidebar = () => {
   return (
-    <aside class="sidebar">
-      <div class="logo">
-        <i class="fas fa-chart-line"></i>
-        <span>geStock</span>
-      </div>
+    <aside className={styles.sidebar}>
+      <Logo
+        classNames={LogoStyles.logo}
+        text="Filmpire"
+        classList="fas fa-chart-line"
+      />
       {/* <!-- Elements de menus --> */}
-      <ul class="menu">
-        <li class="search-box">
-          <i class="fas fa-search"></i>
-          <input type="search" placeholder="Rechercher..." />
-        </li>
-        <li class="active">
-          <i class="fas fa-home"></i>
-          <span>Acceuil</span>
-        </li>
-        <li>
-          <i class="fas fa-chart-bar"></i>
-          <span>Statistiques</span>
-        </li>
-        <li>
-          <i class="fas fa-tasks"></i>
-          <span>Projet</span>
-        </li>
-        <li>
-          <i class="fas fa-calendar"></i>
-          <span>Analyses</span>
-        </li>
-        <li class="notification-msg">
-          <i class="fas fa-envelope"></i>
-          <span>Messages</span>
-          <span class="notification">5</span>
-        </li>
-        <li>
-          <i class="fas fa-cog"></i>
-          <span>Parametres</span>
-        </li>
-      </ul>
-
+      <Menu classNames={MenuStyles.menu}>
+        <Search classNames={SearchStyles.searchBox} />
+        <ItemList classNames="active" classList="fas fa-home" text="Acceuil" />
+        <ItemList classList="fas fa-chart-bar" text="Statistiques" />
+        <ItemList classList="fas fa-tasks" text="Projet" />
+        <ItemList classList="fas fa-calendar" text="Analyses" />
+        <ItemList classList="fas fa-envelope" text="Messages" />
+        <ItemList classList="fas fa-cog" text="Parametres" />
+      </Menu>
       {/* <!-- Bottom menus --> */}
-      <ul class="bottom-menus">
-        <li id="ToggleDarkmode">
-          <i class="fas fa-moon"></i>
-          <span>Mode sombre</span>
-        </li>
-        <li>
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Deconnexion</span>
-        </li>
-      </ul>
-
-      {/* <!-- </div> --> */}
+      <Menu classNames={MenuStyles.bottomMenus}>
+        <ItemList
+          id="ToggleDarkmode"
+          classList="fas fa-moon"
+          text="Mode sombre"
+        />
+        <ItemList classList="fas fa-sign-out-alt" text="Deconnexion" />
+      </Menu>
     </aside>
   );
 };

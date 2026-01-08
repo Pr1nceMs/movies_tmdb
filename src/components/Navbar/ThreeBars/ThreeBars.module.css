@@ -1,0 +1,22 @@
+/* Bouton toggle sidebar */
+.sidebarToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: dodgerblue;
+  transition: transform var(--transition-speed);
+}
+
+/* #sidebar-toggle:hover {
+    transform: rotate(90deg);
+} */
+
+.navLeft button.transformEffect {
+  transform: rotate(360deg);
+}
+.navLeft {
+  /* margin-left: 15px; */
+  padding: 0 10px;
+  /* border: 2px solid orangered; */
+}

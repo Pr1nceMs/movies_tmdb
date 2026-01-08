@@ -1,0 +1,95 @@
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--primary-color);
+  transition: width var(--transition-speed);
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  /* gap: 30px; */
+  /* font-size: 17px; */
+  /* align-items: center; */
+  text-align: center;
+  color: #f8f5f5;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.sidebar span {
+  opacity: 1;
+  width: auto;
+  white-space: nowrap;
+  transition: opacity var(--transition-speed);
+}
+
+.sidebar-collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebar-collapsed span {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+/* Effet shine pour la sidebar */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.4s ease;
+}
+
+/* Animation shine lors de l'expansion */
+.sidebar:not(.sidebar-collapsed)::after {
+  animation: sidebarShine 1.5s ease;
+}
+
+/* Animation shine lors de la réduction */
+.sidebar-collapsed::after {
+  animation: sidebarShineReverse 1.5s ease;
+}
+
+/* Keyframes pour l'effet shine lors de l'expansion */
+@keyframes sidebarShine {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 200%;
+    opacity: 0;
+  }
+}
+
+/* Keyframes pour l'effet shine lors de la réduction */
+@keyframes sidebarShineReverse {
+  0% {
+    left: 200%;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}

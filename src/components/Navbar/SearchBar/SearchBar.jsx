@@ -5,7 +5,7 @@ const SearchBar = () => {
     <div className={styles.searchBar}>
       <i className="fas fa-search" id={styles.fas}></i>
       <input
-        type="text"
+        type="search"
         placeholder="Rechercher..."
         name="search"
         id={styles.search}

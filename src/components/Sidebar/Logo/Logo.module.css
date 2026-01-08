@@ -1,0 +1,12 @@
+.logo {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.logo i {
+  margin-right: 10px;
+}
