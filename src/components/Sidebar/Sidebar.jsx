@@ -16,17 +16,16 @@ const Sidebar = () => {
         classList="fas fa-chart-line"
       />
       {/* <!-- Elements de menus --> */}
-      <Menu classNames={MenuStyles.menu}>
-        <Search classNames={SearchStyles.searchBox} />
-        <ItemList classNames="active" classList="fas fa-home" text="Acceuil" />
+      <Menu classnames={MenuStyles.menu}>
+        <Search classnames={SearchStyles.searchBox} />
+        <ItemList classnames="active" classList="fas fa-home" text="Acceuil" />
         <ItemList classList="fas fa-chart-bar" text="Statistiques" />
         <ItemList classList="fas fa-tasks" text="Projet" />
         <ItemList classList="fas fa-calendar" text="Analyses" />
         <ItemList classList="fas fa-envelope" text="Messages" />
         <ItemList classList="fas fa-cog" text="Parametres" />
       </Menu>
-      {/* <!-- Bottom menus --> */}
-      <Menu classNames={MenuStyles.bottomMenus}>
+      <Menu classnames={MenuStyles.bottomMenus}>
         <ItemList
           id="ToggleDarkmode"
           classList="fas fa-moon"
@@ -34,6 +33,7 @@ const Sidebar = () => {
         />
         <ItemList classList="fas fa-sign-out-alt" text="Deconnexion" />
       </Menu>
+      {/* <!-- Bottom menus --> */}
     </aside>
   );
 };

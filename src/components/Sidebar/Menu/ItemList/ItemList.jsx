@@ -2,9 +2,9 @@
 import React from "react";
 import styles from "./ItemList.module.css";
 
-const ItemList = ({ classNames, classList, text }) => {
+const ItemList = ({ classnames, classList, text }) => {
   return (
-    <li className={classNames}>
+    <li className={classnames}>
       <i className={classList}></i>
       <span>{text}</span>
     </li>

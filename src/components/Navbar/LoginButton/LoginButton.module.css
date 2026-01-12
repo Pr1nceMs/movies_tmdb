@@ -1,17 +1,22 @@
 .loginButton {
   padding: 10px;
   border-radius: 10px;
-  background-color: aliceblue;
-  color: dodgerblue;
+  background-color: dodgerblue;
+  color: aliceblue;
   outline: none;
   border: none;
   cursor: pointer;
   font-weight: 500;
   transition: background-color 0.3s ease;
+  font-size: 0.9rem;
   /* margin-right: -30px; */
 }
 .loginButton:hover {
-  background-color: dodgerblue;
-  color: aliceblue;
-  outline: 2px solid white;
+  background-color: aliceblue;
+  color: dodgerblue;
+  outline: 3px solid dodgerblue;
+}
+
+.loginButton span {
+  padding: 10px 5px;
 }

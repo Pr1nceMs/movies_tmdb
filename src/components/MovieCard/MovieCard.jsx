@@ -1,29 +1,31 @@
 import React from "react";
-import styles from "./MovieCard.css";
+import styles from "./MovieCard.module.css";
 
 const MovieCard = () => {
   return (
-    <div className={styles.movie_card}>
+    <div className={styles.movieCard}>
       <img
-        src="./assets/big-sur-4k_1608574481.png"
+        src="src/assets/big_sur_4k_wallpaper_by_thisahami_df7nzr1-pre.jpg"
         alt="Movie cover"
-        className="movie-img"
+        className={styles.movieImg}
       />
 
       {/* <!-- Dégradé sombre --> */}
-      <div className="overlay"></div>
+      <div className={styles.overlay}></div>
 
       {/* <!-- Effet glace coulissant --> */}
-      <div className="shine"></div>
+      <div className={styles.shine}></div>
 
       {/* <!-- Contenu --> */}
-      <div className="content">
-        <h3 className="title">Ma fameuse recette de boulet sauce-lapin</h3>
+      <div className={styles.content}>
+        <h3 className={styles.title}>
+          Ma fameuse recette de boulet sauce-lapin
+        </h3>
 
-        <div className="details">
-          <div className="rating">★★★★☆</div>
+        <div className={styles.details}>
+          <div className={styles.rating}>★★★★☆</div>
 
-          <button className="favorite">
+          <button className={styles.favorite}>
             <i className="fas fa-heart"></i>
           </button>
         </div>

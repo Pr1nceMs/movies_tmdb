@@ -1,0 +1,11 @@
+.appLayout {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
+  /* padding: 75px 0px; */
+  /* overflow: hidden; */
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* gap: 20px; */
+  /* border: 2px solid red; */
+}
