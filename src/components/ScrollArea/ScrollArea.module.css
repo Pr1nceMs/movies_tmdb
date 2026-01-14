@@ -4,6 +4,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 10px 0;
+  /* scroll-behavior: smooth; */
+  /* -ms-overflow-style: none; */
+  /* scrollbar-width: none; */
 }
 .scrollArea::-webkit-scrollbar {
   width: 4px;

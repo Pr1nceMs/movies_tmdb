@@ -7,16 +7,16 @@ import ThreeBars from "./ThreeBars/ThreeBars";
 
 const Navbar = () => {
   return (
-    <div className={styles.mainContent}>
-      <nav className={styles.navbar}>
-        <ThreeBars />
-        <SearchBar />
-        <div className={styles.navRight}>
-          <DarkMode />
-          <LoginButton />
-        </div>
-      </nav>
-    </div>
+    // <div className={styles.mainContent}>
+    <nav className={styles.navbar}>
+      <ThreeBars />
+      <SearchBar />
+      <div className={styles.navRight}>
+        <DarkMode />
+        <LoginButton />
+      </div>
+    </nav>
+    // </div>
   );
 };
 

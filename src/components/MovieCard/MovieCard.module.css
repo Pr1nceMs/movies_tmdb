@@ -12,8 +12,8 @@
   place-items: center;
 } */
 .movieCard {
-  width: 240px;
-  height: 360px;
+  width: 210px;
+  height: 330px;
   border-radius: 18px;
   overflow: hidden;
   position: relative;

@@ -1,18 +1,14 @@
 .navbar {
-  /* display: grid; */
-  /* grid-template-columns: 10% 72% 15%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: aliceblue;
   box-shadow: var(--box-shadow);
-  /* gap: 20px; */
   width: 100%;
   height: 75px;
   position: sticky;
-  /* top: 0; */
-  /* padding: 5px 10px; */
-  /* margin-left: var(--sidebar-width); */
+  top: 0;
+  z-index: 10;
   padding: 15px 30px;
   /* border: 2px solid orangered; */
 }
@@ -23,13 +19,6 @@
   gap: 20px;
   align-items: center;
   padding: 10px;
-}
-/* Main content */
-.mainContent {
-  width: 100%;
-  /* border: 2px solid green; */
-  /* min-height: 100vh; */
-  transition: margin-left var(--transition-speed);
 }
 
 /* Effet de l'expansion de la sidebar */
