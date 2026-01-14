@@ -1,12 +1,17 @@
 .logo {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   font-size: 1.5rem;
   padding: 10px;
   margin-bottom: 30px;
+  flex-shrink: 0;
+  /* border: 2px solid red; */
 }
 
 .logo i {
   margin-right: 10px;
+}
+.spanTextLogo {
+  font-weight: 600;
 }

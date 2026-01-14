@@ -7,32 +7,42 @@ import LogoStyles from "./Logo/Logo.module.css";
 import MenuStyles from "./Menu/Menu.module.css";
 import SearchStyles from "./Search/Search.module.css";
 import Search from "./Search/Search";
+import Divider from "../Divider/Divider";
+import ScrollArea from "../ScrollArea/ScrollArea";
 const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
       <Logo
         classNames={LogoStyles.logo}
         text="Filmpire"
-        classList="fas fa-chart-line"
+        // classList="fas fa-chart-line"
       />
       {/* <!-- Elements de menus --> */}
-      <Menu classnames={MenuStyles.menu}>
-        <Search classnames={SearchStyles.searchBox} />
-        <ItemList classnames="active" classList="fas fa-home" text="Acceuil" />
-        <ItemList classList="fas fa-chart-bar" text="Statistiques" />
-        <ItemList classList="fas fa-tasks" text="Projet" />
-        <ItemList classList="fas fa-calendar" text="Analyses" />
-        <ItemList classList="fas fa-envelope" text="Messages" />
-        <ItemList classList="fas fa-cog" text="Parametres" />
-      </Menu>
-      <Menu classnames={MenuStyles.bottomMenus}>
-        <ItemList
-          id="ToggleDarkmode"
-          classList="fas fa-moon"
-          text="Mode sombre"
-        />
-        <ItemList classList="fas fa-sign-out-alt" text="Deconnexion" />
-      </Menu>
+      <ScrollArea>
+        <Menu classnames={MenuStyles.menu}>
+          <Divider label="categories" />
+          <Search classnames={SearchStyles.searchBox} />
+          <ItemList
+            classnames="active"
+            classList="fas fa-home"
+            text="Acceuil"
+          />
+          <ItemList classList="fas fa-chart-bar" text="Statistiques" />
+          <ItemList classList="fas fa-tasks" text="Projet" />
+          <ItemList classList="fas fa-calendar" text="Analyses" />
+          <ItemList classList="fas fa-envelope" text="Messages" />
+          <ItemList classList="fas fa-cog" text="Parametres" />
+        </Menu>
+        <Menu classnames={MenuStyles.bottomMenus}>
+          <Divider label="genres" />
+          <ItemList
+            id="ToggleDarkmode"
+            classList="fas fa-moon"
+            text="Mode sombre"
+          />
+          <ItemList classList="fas fa-sign-out-alt" text="Deconnexion" />
+        </Menu>
+      </ScrollArea>
       {/* <!-- Bottom menus --> */}
     </aside>
   );

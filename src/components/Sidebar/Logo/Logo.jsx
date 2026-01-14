@@ -1,11 +1,11 @@
-/* eslint-disable no-unused-vars */
+// /* eslint-disable no-unused-vars */
 import React from "react";
 import styles from "./Logo.module.css";
-const Logo = ({ classNames, text, classList }) => {
+const Logo = ({ classNames, text, classList = "" }) => {
   return (
     <div className={classNames}>
       <i className={classList}></i>
-      <span>{text}</span>
+      <span className={styles.spanTextLogo}>{text}</span>
     </div>
   );
 };
