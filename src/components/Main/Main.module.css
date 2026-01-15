@@ -2,9 +2,11 @@
   padding: 30px;
   margin: 25px;
   display: flex;
-  /* overflow-x: hidden;
-  overflow-y: auto; */
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
+  flex: 1;
   justify-content: center;
+  /* min-height: auto; */
   flex-wrap: wrap;
   gap: 30px;
   border: 2px solid red;
