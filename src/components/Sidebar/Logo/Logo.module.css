@@ -6,6 +6,7 @@
   padding: 10px;
   margin-bottom: 30px;
   flex-shrink: 0;
+  transition: width 0.7s ease;
   /* border: 2px solid red; */
 }
 
@@ -14,4 +15,7 @@
 }
 .spanTextLogo {
   font-weight: 600;
+}
+.spanTextLogoCollapsed {
+  display: none;
 }

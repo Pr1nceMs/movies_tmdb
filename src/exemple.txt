@@ -1,0 +1,13 @@
+import React from "react";
+import styles from "./ItemList.module.css";
+
+const ItemList = ({ classNames = "", classList, text }) => {
+  return (
+    <li className={`${styles.item} ${classNames}`}>
+      <i className={classList}></i>
+      <span>{text}</span>
+    </li>
+  );
+};
+
+export default ItemList;

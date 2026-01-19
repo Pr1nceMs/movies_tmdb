@@ -1,7 +1,17 @@
 .darkMode {
   font-size: 20px;
-  /* border: 2px solid white; */
-  padding: 10px;
+  /* border: 2px solid red; */
+  padding: 12px;
   cursor: pointer;
-  color: dodgerblue;
+  color: var(--primary-color);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+.darkMode:hover {
+  background-color: rgba(156, 163, 175, 0.3);
+}
+body.darkModeTheme {
+  background-color: rgba(128, 123, 123, 0.1);
+  color: white;
+  transition: background-color 0.3s ease;
 }

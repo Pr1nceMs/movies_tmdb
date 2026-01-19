@@ -1,12 +1,15 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
+// import { NavLink } from "react-router-dom";
 import styles from "./ItemList.module.css";
 
-const ItemList = ({ classnames, classList, text }) => {
+const ItemList = ({ classnames, classList, text, id, isActive, onClick }) => {
   return (
-    <li className={classnames}>
+    <li
+      className={`${isActive ? styles.active : ""} ${classnames}`}
+      onClick={() => onClick(id)}
+    >
       <i className={classList}></i>
-      <span>{text}</span>
+      <span className={styles.text}>{text}</span>
     </li>
   );
 };

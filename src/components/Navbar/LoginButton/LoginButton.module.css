@@ -1,7 +1,7 @@
 .loginButton {
   padding: 10px;
   border-radius: 10px;
-  background-color: dodgerblue;
+  background-color: var(--primary-color);
   color: aliceblue;
   outline: none;
   border: none;
@@ -13,8 +13,8 @@
 }
 .loginButton:hover {
   background-color: aliceblue;
-  color: dodgerblue;
-  outline: 3px solid dodgerblue;
+  color: var(--primary-color);
+  outline: 3px solid var(--primary-color);
 }
 
 .loginButton span {

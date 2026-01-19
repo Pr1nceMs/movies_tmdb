@@ -2,8 +2,8 @@
 
 :root {
   /* --primary-color: deeppink; */
-  /* --primary-color: #007bff; */
-  --primary-color: dodgerblue;
+  --primary-color: #007bff;
+  /* --primary-color: blueviolet; */
   --sidebar-width: 230px;
   --sidebar-collapsed-width: 83px;
   --transition-speed: 0.4s;
@@ -21,7 +21,7 @@ body {
   background-color: #fff;
   min-height: 100vh;
   /* overflow: hidden; */
-  scrollbar-width: 1px;
+  scrollbar-width: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 li {
@@ -29,12 +29,14 @@ li {
 }
 /* Wrapper du contenu principal */
 ::-webkit-scrollbar {
-  width: 3px;
+  /* width: 0; */
+  display: none;
 }
 /* ::-webkit-scrollbar-track {
   background: #f1f1f1;
 } */
 ::-webkit-scrollbar-thumb {
+  /* width: none; */
   background: #888;
   border-radius: 20px;
 }

@@ -4,7 +4,7 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: dodgerblue;
+  color: var(--primary-color);
   transition: transform var(--transition-speed);
 }
 

@@ -4,13 +4,10 @@
   background-color: var(--primary-color);
   transition: width var(--transition-speed);
   padding: 20px;
-  height: 100vh;
+  height: 100dvh;
   position: fixed;
   display: flex;
   flex-direction: column;
-  /* gap: 30px; */
-  /* font-size: 17px; */
-  /* align-items: center; */
   text-align: center;
   color: #f8f5f5;
   overflow: hidden;
@@ -24,16 +21,17 @@
   transition: opacity var(--transition-speed);
 }
 
-.sidebar-collapsed {
+.sidebarCollapsed {
   width: var(--sidebar-collapsed-width);
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
-
-.sidebar-collapsed span {
+.sidebar.sidebarCollapsed span {
   opacity: 0;
   width: 0;
   overflow: hidden;
 }
-/* Effet shine pour la sidebar */
 .sidebar::after {
   content: "";
   position: absolute;
@@ -51,12 +49,12 @@
 }
 
 /* Animation shine lors de l'expansion */
-.sidebar:not(.sidebar-collapsed)::after {
+.sidebar:not(.sidebarCollapsed)::after {
   animation: sidebarShine 1.5s ease;
 }
 
 /* Animation shine lors de la réduction */
-.sidebar-collapsed::after {
+.sidebar.sidebarCollapsed::after {
   animation: sidebarShineReverse 1.5s ease;
 }
 

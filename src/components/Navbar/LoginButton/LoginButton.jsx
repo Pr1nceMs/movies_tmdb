@@ -4,7 +4,7 @@ import styles from "./LoginButton.module.css";
 const LoginButton = () => {
   return (
     <button className={styles.loginButton}>
-      <span>Se connecter</span>
+      <span>{"Connexion".toUpperCase()}</span>
     </button>
   );
 };

@@ -25,3 +25,12 @@
 .mainContentExpanded {
   margin-left: var(--sidebar-collapsed-width);
 }
+
+/* .navbarCollapsed {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+} */
+.navbarCollapsed {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}

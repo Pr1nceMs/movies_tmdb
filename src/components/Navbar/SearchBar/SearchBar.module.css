@@ -4,6 +4,7 @@
   /* flex: 1; */
   position: relative;
   border-radius: 10px;
+  /* border: 2px solid red; */
   background-color: #e5eaf2;
 }
 #search {
@@ -27,3 +28,6 @@ input[type="search"]:focus {
   outline: none;
   border: none;
 }
+/* input[type="search"]::placeholder {
+  color: dodgerblue;
+} */
