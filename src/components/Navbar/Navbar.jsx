@@ -6,19 +6,12 @@ import LoginButton from "./LoginButton/LoginButton";
 import DarkMode from "../DarkMode/DarkMode";
 import ThreeBars from "./ThreeBars/ThreeBars";
 
-const Navbar = ({ onToggleSidebar, isCollapsed }) => {
-  const [darkMode, setDarkMode] = React.useState(false);
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+const Navbar = ({ onToggleSidebar, isCollapsed, toggleTheme, theme }) => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const handleSearchChange = (query) => {
     setSearchQuery(query);
   };
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+
   return (
     // <div className={styles.mainContent}>
     <nav
@@ -29,7 +22,7 @@ const Navbar = ({ onToggleSidebar, isCollapsed }) => {
       <ThreeBars onToggleSidebar={onToggleSidebar} />
       <SearchBar />
       <div className={styles.navRight}>
-        <DarkMode />
+        <DarkMode toggleTheme={toggleTheme} theme={theme} />
         <LoginButton />
       </div>
     </nav>

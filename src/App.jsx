@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/global.css";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -17,6 +17,14 @@ function App() {
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prevCollapsed) => !prevCollapsed);
   };
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", theme === "dark");
+  }, [theme]);
 
   return (
     <>
@@ -25,7 +33,11 @@ function App() {
         classnames={AppLayoutStyle.appLayout}
         isCollapsed={isSidebarCollapsed}
       >
-        <Navbar onToggleSidebar={toggleSidebar} />
+        <Navbar
+          onToggleSidebar={toggleSidebar}
+          toggleTheme={toggleTheme}
+          theme={theme}
+        />
         <Main>
           {movies.map((movie, index) => (
             <MovieCard key={index} />

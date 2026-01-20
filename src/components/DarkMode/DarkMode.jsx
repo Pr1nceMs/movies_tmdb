@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import styles from "./DarkMode.module.css";
-const DarkMode = () => {
-  const [theme, setTheme] = useState("light");
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+const DarkMode = ({ theme, toggleTheme }) => {
   return (
     <i
       onClick={toggleTheme}
       className={
         theme === "light"
           ? `fas fa-sun ${styles.darkMode}`
-          : `fas fa-moon ${styles.darkMode} ${styles.darkModeTheme}`
+          : `fas fa-moon ${styles.darkMode} ${styles.darkModeActive}`
       }
     ></i>
   );

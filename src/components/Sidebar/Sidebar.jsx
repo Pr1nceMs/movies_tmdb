@@ -6,7 +6,7 @@ import Logo from "./Logo/Logo";
 import LogoStyles from "./Logo/Logo.module.css";
 import MenuStyles from "./Menu/Menu.module.css";
 import SearchStyles from "./Search/Search.module.css";
-import Search from "./Search/Search";
+// import Search from "./Search/Search";
 import Divider from "../Divider/Divider";
 import ScrollArea from "../ScrollArea/ScrollArea";
 const Sidebar = ({ isCollapsed }) => {
@@ -30,11 +30,11 @@ const Sidebar = ({ isCollapsed }) => {
           {/* <Search classnames={SearchStyles.searchBox} /> */}
           <ItemList
             id="popular"
-            classnames="active"
             classList="fas fa-home"
             text="Populaire"
             isActive={activeItem === "popular"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-chart-bar"
@@ -42,6 +42,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="topRated"
             isActive={activeItem === "topRated"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-tasks"
@@ -49,6 +50,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="upcoming"
             isActive={activeItem === "upcoming"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-calendar"
@@ -56,6 +58,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="awards"
             isActive={activeItem === "awards"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
         </Menu>
         <Menu classnames={MenuStyles.bottomMenus}>
@@ -66,6 +69,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="action"
             isActive={activeItem === "action"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -73,6 +77,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="adventure"
             isActive={activeItem === "adventure"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -80,6 +85,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="animation"
             isActive={activeItem === "animation"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-laugh"
@@ -87,6 +93,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="comedy"
             isActive={activeItem === "comedy"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -94,6 +101,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="crime"
             isActive={activeItem === "crime"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -101,6 +109,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="drama"
             isActive={activeItem === "drama"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -108,6 +117,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="fantasy"
             isActive={activeItem === "fantasy"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -115,6 +125,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="horror"
             isActive={activeItem === "horror"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -122,6 +133,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="romance"
             isActive={activeItem === "romance"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-film"
@@ -129,6 +141,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="scienceFiction"
             isActive={activeItem === "scienceFiction"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
         </Menu>
         {/* <!-- Bottom menus --> */}
@@ -140,6 +153,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="settings"
             isActive={activeItem === "settings"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             id="darkmode"
@@ -147,6 +161,7 @@ const Sidebar = ({ isCollapsed }) => {
             text="Mode sombre"
             isActive={activeItem === "darkmode"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
           <ItemList
             classList="fas fa-sign-out-alt"
@@ -154,6 +169,7 @@ const Sidebar = ({ isCollapsed }) => {
             id="logout"
             isActive={activeItem === "logout"}
             onClick={setActiveItem}
+            isCollapsed={isCollapsed}
           />
         </Menu>
       </ScrollArea>

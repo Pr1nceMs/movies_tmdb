@@ -1,14 +1,10 @@
 .footer {
   height: 80px;
-  /* border-top: 1px solid rgba(0, 0, 0, 0.1); */
   box-shadow: var(--box-shadow);
-  /* position: sticky; */
-  /* bottom: 0; */
-  background: #fff;
-
+  background: var(--footer-color);
+  color: var(--footer-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 20px;
 }

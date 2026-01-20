@@ -8,12 +8,13 @@
   position: relative;
   cursor: pointer;
   background: #000;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .movieCard:hover {
   transform: scale(1.05);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: var(--movie-card-border);
 }
 
 /* Full image */
@@ -143,22 +144,6 @@
 .favorite:hover {
   background: rgba(255, 255, 255, 0.35);
 }
-
-/* .favorite:active .fas.fa-heart {
-  transform: translate(-50%, -50%) scale(0.9);
-}
-.favorite.liked .fas.fa-heart {
-  animation: beat 0.6s infinite;
-}
-@keyframes beat {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-} */
 
 @media screen and (max-width: 768px) {
   .movieCard {

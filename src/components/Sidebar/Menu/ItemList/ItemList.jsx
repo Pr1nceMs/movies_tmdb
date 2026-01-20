@@ -1,15 +1,16 @@
 import React from "react";
 // import { NavLink } from "react-router-dom";
-import styles from "./ItemList.module.css";
+import stylesItem from "./ItemList.module.css";
 
-const ItemList = ({ classnames, classList, text, id, isActive, onClick }) => {
+const ItemList = ({ classList, text, id, isActive, onClick, isCollapsed }) => {
   return (
     <li
-      className={`${isActive ? styles.active : ""} ${classnames}`}
+      className={`${stylesItem.item} ${isActive ? stylesItem.active : ""}`}
       onClick={() => onClick(id)}
     >
       <i className={classList}></i>
-      <span className={styles.text}>{text}</span>
+      {!isCollapsed && <span>{text}</span>}
+      {isCollapsed && <span className={stylesItem.tooltip}>{text}</span>}
     </li>
   );
 };
