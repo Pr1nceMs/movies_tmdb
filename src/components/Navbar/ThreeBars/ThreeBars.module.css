@@ -5,14 +5,14 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--primary-color);
-  transition: transform var(--transition-speed);
+  transition: transform 0.9s ease;
 }
 
-.sidebarToggle:hover {
-  transform: rotate(90deg);
-}
+/* .sidebarToggle:hover {
+  transform: rotate(360deg);
+} */
 
-.navLeft button.transformEffect {
+.navLeft .transformEffect {
   transform: rotate(360deg);
 }
 .navLeft {

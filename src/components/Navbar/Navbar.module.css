@@ -19,9 +19,3 @@
   align-items: center;
   padding: 10px;
 }
-
-/* Effet collapse de la sidebar */
-.navbarCollapsed {
-  margin-left: var(--sidebar-collapsed-width);
-  width: calc(100% - var(--sidebar-collapsed-width));
-}

@@ -14,12 +14,8 @@ const Navbar = ({ onToggleSidebar, isCollapsed, toggleTheme, theme }) => {
 
   return (
     // <div className={styles.mainContent}>
-    <nav
-      className={`${styles.navbar} ${
-        isCollapsed ? styles.navbarCollapsed : ""
-      }`}
-    >
-      <ThreeBars onToggleSidebar={onToggleSidebar} />
+    <nav className={styles.navbar}>
+      <ThreeBars onToggleSidebar={onToggleSidebar} isCollapsed={isCollapsed} />
       <SearchBar />
       <div className={styles.navRight}>
         <DarkMode toggleTheme={toggleTheme} theme={theme} />

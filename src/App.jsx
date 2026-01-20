@@ -35,6 +35,7 @@ function App() {
       >
         <Navbar
           onToggleSidebar={toggleSidebar}
+          isCollapsed={isSidebarCollapsed}
           toggleTheme={toggleTheme}
           theme={theme}
         />
