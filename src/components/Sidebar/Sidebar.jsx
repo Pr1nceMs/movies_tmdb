@@ -5,7 +5,7 @@ import Menu from "./Menu/Menu";
 import Logo from "./Logo/Logo";
 import LogoStyles from "./Logo/Logo.module.css";
 import MenuStyles from "./Menu/Menu.module.css";
-import SearchStyles from "./Search/Search.module.css";
+// import SearchStyles from "./Search/Search.module.css";
 // import Search from "./Search/Search";
 import Divider from "../Divider/Divider";
 import ScrollArea from "../ScrollArea/ScrollArea";

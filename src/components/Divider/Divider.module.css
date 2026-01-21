@@ -2,6 +2,8 @@
   position: relative;
   text-align: center;
   margin: 20px 0;
+  opacity: 1;
+  transition: opacity var(--transition-speed);
 }
 
 .divider::before {
@@ -15,6 +17,8 @@
 }
 
 .divider span {
+  width: auto;
+  white-space: nowrap;
   position: relative;
   background: var(--sidebar-color);
   padding: 0 12px;

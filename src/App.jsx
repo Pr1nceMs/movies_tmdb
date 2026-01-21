@@ -39,7 +39,7 @@ function App() {
           toggleTheme={toggleTheme}
           theme={theme}
         />
-        <Main>
+        <Main isCollapsed={isSidebarCollapsed}>
           {movies.map((movie, index) => (
             <MovieCard key={index} />
           ))}

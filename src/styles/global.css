@@ -46,6 +46,7 @@ li {
 /* 🌙 DARK MODE */
 body.dark {
   --bg-color: #0f172a;
+  /* --bg-color: #11101d; */
   --text-color: #e5e7eb;
   --surface-color: #020617;
   /* --primary-color: #38bdf8; */
