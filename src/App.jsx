@@ -27,7 +27,7 @@ function App() {
   }, [theme]);
 
   return (
-    <>
+    <div>
       <Sidebar isCollapsed={isSidebarCollapsed} />
       <AppLayout
         classnames={AppLayoutStyle.appLayout}
@@ -46,7 +46,7 @@ function App() {
         </Main>
         <Footer />
       </AppLayout>
-    </>
+    </div>
   );
 }
 

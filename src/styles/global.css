@@ -30,10 +30,14 @@ body {
   background-color: #fff;
   min-height: 100vh;
   scrollbar-width: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
 }
 li {
   list-style: none;
@@ -46,14 +50,16 @@ li {
 /* 🌙 DARK MODE */
 body.dark {
   --bg-color: #0f172a;
-  /* --bg-color: #11101d; */
+  --bg-color: rgb(29, 35, 42);
   --text-color: #e5e7eb;
-  --surface-color: #020617;
+  /* --surface-color: #020617; */
+  --surface-color: rgb(29, 35, 42);
   /* --primary-color: #38bdf8; */
   --primary-color: dodgerblue;
   --border-color: rgba(255, 255, 255, 0.1);
   --divider-color: rgba(255, 255, 255, 0.3);
-  --footer-color: #0f172a;
+  /* --footer-color: #0f172a; */
+  --footer-color: rgb(29, 35, 42);
   --footer-text-color: #e5e7eb;
   --movie-card-border: 3px solid #f8f5f5;
   --sidebar-color: dodgerblue;

@@ -7,7 +7,7 @@
   flex-wrap: wrap;
   gap: 30px;
   transition: all 0.5s ease-in-out;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 /* .mainCollapsed {
   padding: 30px 0px;
