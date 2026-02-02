@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./MovieCard.module.css";
 
-const MovieCard = () => {
+const MovieCard = ({ image, title }) => {
+  const imageUrl = image
+    ? `https://image.tmdb.org/t/p/w500${image}`
+    : "/placeholder.jpg"; // Ajoutez une image par défaut
+
   return (
     <div className={styles.movieCard}>
-      <img
-        src="src/assets/big_sur_4k_wallpaper_by_thisahami_df7nzr1-pre.jpg"
-        alt="Movie cover"
-        className={styles.movieImg}
-      />
+      <img src={imageUrl} alt="Movie cover" className={styles.movieImg} />
 
       {/* <!-- Dégradé sombre --> */}
       <div className={styles.overlay}></div>
@@ -18,9 +18,7 @@ const MovieCard = () => {
 
       {/* <!-- Contenu --> */}
       <div className={styles.content}>
-        <h3 className={styles.title}>
-          Ma fameuse recette de boulet sauce-lapin
-        </h3>
+        <h3 className={styles.title}>{title}</h3>
 
         <div className={styles.details}>
           <div className={styles.rating}>★★★★☆</div>

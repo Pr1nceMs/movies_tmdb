@@ -8,7 +8,8 @@ export const getMovies = async (type = "popular", page = 1) => {
   );
   const data = await response.json();
   console.log("render pour getMovies");
-  console.log(data.results[0]);
+  console.log(data.results);
+  return data.results;
 };
 
 // export const getMovieById = async (id) => {

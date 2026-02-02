@@ -43,3 +43,8 @@
   opacity: 1;
   z-index: 9999;
 }
+.link {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}

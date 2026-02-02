@@ -10,12 +10,16 @@
   flex-direction: column;
   text-align: center;
   /* color: #f8f5f5; */
-  /* overflow: hidden; */
+  overflow: hidden;
   background-color: var(--sidebar-color);
   color: var(--text-color);
   z-index: 99;
 }
-
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-speed);
+}
 .sidebar span {
   opacity: 1;
   width: auto;

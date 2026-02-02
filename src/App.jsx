@@ -10,10 +10,19 @@ import Main from "./components/Main/Main";
 import { getMovies, getMovieByGenre, getGenres } from "./services/tmdb";
 import Footer from "./components/Footer/Footer";
 function App() {
-  const movies = [
+  const movie = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
   ];
+  const [movies, setMovies] = useState([]);
 
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const movies = await getMovies();
+      setMovies(movies);
+    };
+    fetchMovies();
+  }, []);
+  console.log(movies.length);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const toggleSidebar = () => {
@@ -27,12 +36,6 @@ function App() {
   useEffect(() => {
     document.body.classList.toggle("dark", theme === "dark");
   }, [theme]);
-
-  useEffect(() => {
-    // getMovies();
-    // getMovieByGenre(28);
-    getGenres();
-  }, []);
 
   return (
     <div>
@@ -48,8 +51,8 @@ function App() {
           theme={theme}
         />
         <Main isCollapsed={isSidebarCollapsed}>
-          {movies.map((movie, index) => (
-            <MovieCard key={index} />
+          {movies.map(({ poster_path, id, title }) => (
+            <MovieCard key={id} image={poster_path} title={title} />
           ))}
         </Main>
         <Footer />
