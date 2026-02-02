@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./styles/global.css";
 import Navbar from "./components/Navbar/Navbar";
@@ -6,6 +7,7 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import AppLayoutStyle from "./components/AppLayout/AppLayout.module.css";
 import MovieCard from "./components/MovieCard/MovieCard";
 import Main from "./components/Main/Main";
+import { getMovies, getMovieByGenre, getGenres } from "./services/tmdb";
 import Footer from "./components/Footer/Footer";
 function App() {
   const movies = [
@@ -25,6 +27,12 @@ function App() {
   useEffect(() => {
     document.body.classList.toggle("dark", theme === "dark");
   }, [theme]);
+
+  useEffect(() => {
+    // getMovies();
+    // getMovieByGenre(28);
+    getGenres();
+  }, []);
 
   return (
     <div>
