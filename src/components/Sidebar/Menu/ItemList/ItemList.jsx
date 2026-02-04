@@ -3,11 +3,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import stylesItem from "./ItemList.module.css";
 
-const ItemList = ({ icon, text, id, isActive, onClick, isCollapsed, path }) => {
+const ItemList = ({
+  icon,
+  text,
+  id,
+  isActive,
+  onClick,
+  isCollapsed,
+  path,
+  onClickDarkMode,
+}) => {
   return (
     <li
       className={`${stylesItem.item} ${isActive ? stylesItem.active : ""}`}
-      onClick={() => onClick(id)}
+      onClick={() => {
+        onClick(id);
+        onClickDarkMode();
+      }}
     >
       <Link to={path} className={stylesItem.link}>
         <i className={icon}></i>

@@ -9,7 +9,27 @@ import { categories, genres } from "../../constants/movieCategories";
 import Divider from "../Divider/Divider";
 import ScrollArea from "../ScrollArea/ScrollArea";
 const Sidebar = ({ isCollapsed }) => {
-  const [activeItem, setActiveItem] = useState("popular");
+  const [activeItem, setActiveItem] = useState("Populaire");
+
+  const [activeDarkMode, setActiveDarkMode] = useState(false);
+
+  const active = activeDarkMode ? "fas fa-moon" : "fas fa-sun";
+
+  const toggleDarkMode = () => {
+    setActiveDarkMode((prev) => !prev);
+  };
+
+  const bottomMenus = [
+    { name: "Parametres", icon: "fas fa-cog", path: "/settings" },
+    {
+      name: "Mode sombre",
+      icon: active,
+      path: "/darkmode",
+      onClickDarkMode: toggleDarkMode,
+    },
+    { name: "Deconnexion", icon: "fas fa-sign-out-alt", path: "/logout" },
+  ];
+
   return (
     <aside
       className={`${styles.sidebar} ${
@@ -20,7 +40,7 @@ const Sidebar = ({ isCollapsed }) => {
         classNames={LogoStyles.logo}
         text="Filmpire"
         isCollapsed={isCollapsed}
-        classList="fas fa-chart-line"
+        classList="fa-solid fa-clapperboard"
       />
       {/* <!-- Elements de menus --> */}
       <ScrollArea>
@@ -56,34 +76,20 @@ const Sidebar = ({ isCollapsed }) => {
         </Menu>
         {/* <!-- Bottom menus --> */}
         <Menu classnames={MenuStyles.bottomMenus}>
-          <Divider label="" />
-          <ItemList
-            icon="fas fa-cog"
-            text="Parametres"
-            id="settings"
-            path="/settings"
-            isActive={activeItem === "settings"}
-            onClick={setActiveItem}
-            isCollapsed={isCollapsed}
-          />
-          <ItemList
-            id="darkmode"
-            icon="fas fa-moon"
-            text="Mode sombre"
-            path="/darkmode"
-            isActive={activeItem === "darkmode"}
-            onClick={setActiveItem}
-            isCollapsed={isCollapsed}
-          />
-          <ItemList
-            icon="fas fa-sign-out-alt"
-            text="Deconnexion"
-            id="logout"
-            path="/logout"
-            isActive={activeItem === "logout"}
-            onClick={setActiveItem}
-            isCollapsed={isCollapsed}
-          />
+          <Divider label="Settings" />
+          {bottomMenus.map(({ name, icon, path }) => (
+            <ItemList
+              key={path}
+              id={name}
+              path={path}
+              icon={icon}
+              text={name}
+              onClickDarkMode={toggleDarkMode}
+              isActive={activeItem === name}
+              onClick={setActiveItem}
+              isCollapsed={isCollapsed}
+            />
+          ))}
         </Menu>
       </ScrollArea>
     </aside>

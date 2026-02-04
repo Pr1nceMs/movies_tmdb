@@ -1,7 +1,15 @@
 import React from "react";
 import styles from "./MovieCard.module.css";
-
-const MovieCard = ({ image, title }) => {
+import Ratings from "./Ratings/Ratings";
+import LikeButton from "./LikeButton/LikeButton";
+const MovieCard = ({
+  image,
+  title,
+  toggleFavoriteMovies,
+  isFavorite,
+  movie,
+  voteAverage,
+}) => {
   const imageUrl = image
     ? `https://image.tmdb.org/t/p/w500${image}`
     : "/placeholder.jpg"; // Ajoutez une image par défaut
@@ -21,11 +29,12 @@ const MovieCard = ({ image, title }) => {
         <h3 className={styles.title}>{title}</h3>
 
         <div className={styles.details}>
-          <div className={styles.rating}>★★★★☆</div>
-
-          <button className={styles.favorite}>
-            <i className="fas fa-heart"></i>
-          </button>
+          <Ratings voteAverage={voteAverage} />
+          <LikeButton
+            toggleFavoriteMovies={toggleFavoriteMovies}
+            isFavorite={isFavorite}
+            movie={movie}
+          />
         </div>
       </div>
     </div>
