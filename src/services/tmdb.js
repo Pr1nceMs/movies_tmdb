@@ -2,7 +2,7 @@ const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 const LANGUAGE = "fr-FR";
 
-export const getMovies = async (type = "popular", page = 1) => {
+export const getMovies = async (type = "popular", page = 5) => {
   const response = await fetch(
     `${BASE_URL}/movie/${type}?api_key=${TMDB_API_KEY}&language=${LANGUAGE}&page=${page}`,
   );
