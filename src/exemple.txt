@@ -63,3 +63,48 @@ export default ItemList;
   transition: background-color 0.6s ease-in-out;
 } */
 
+ return (
+    <div>
+      <Sidebar isCollapsed={isSidebarCollapsed} />
+      <AppLayout
+        classnames={AppLayoutStyle.appLayout}
+        isCollapsed={isSidebarCollapsed}
+      >
+        <Navbar
+          onToggleSidebar={toggleSidebar}
+          isCollapsed={isSidebarCollapsed}
+          toggleTheme={toggleTheme}
+          theme={theme}
+        />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Main isCollapsed={isSidebarCollapsed}>
+                  {movies.map((movie) => (
+                    <MovieCard
+                      key={movie.id}
+                      image={movie.poster_path}
+                      title={movie.title}
+                      movie={movie}
+                      toggleFavoriteMovies={toggleFavoriteMovies}
+                      isFavorite={favorites.some(
+                        (item) => item.id === movie.id,
+                      )}
+                      voteAverage={movie.vote_average}
+                    />
+                  ))}
+                </Main>
+              </>
+            }
+          />
+        </Routes>
+        <Footer />
+      </AppLayout>
+    </div>
+  );
+}
+
+export default App;

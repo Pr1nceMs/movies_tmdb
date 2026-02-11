@@ -12,6 +12,7 @@ const ItemList = ({
   isCollapsed,
   path,
   onClickDarkMode,
+  getMovies,
 }) => {
   return (
     <li
@@ -19,6 +20,7 @@ const ItemList = ({
       onClick={() => {
         onClick(id);
         onClickDarkMode();
+        getMovies(path);
       }}
     >
       <Link to={path} className={stylesItem.link}>

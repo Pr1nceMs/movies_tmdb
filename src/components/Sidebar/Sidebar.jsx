@@ -8,8 +8,8 @@ import MenuStyles from "./Menu/Menu.module.css";
 import { categories, genres } from "../../constants/movieCategories";
 import Divider from "../Divider/Divider";
 import ScrollArea from "../ScrollArea/ScrollArea";
-const Sidebar = ({ isCollapsed }) => {
-  const [activeItem, setActiveItem] = useState("Populaire");
+const Sidebar = ({ isCollapsed, getMovies }) => {
+  const [activeItem, setActiveItem] = useState("");
 
   const [activeDarkMode, setActiveDarkMode] = useState(false);
 
@@ -56,6 +56,7 @@ const Sidebar = ({ isCollapsed }) => {
               isActive={activeItem === name}
               onClick={setActiveItem}
               isCollapsed={isCollapsed}
+              getMovies={() => getMovies(name)}
             />
           ))}
         </Menu>
@@ -77,14 +78,14 @@ const Sidebar = ({ isCollapsed }) => {
         {/* <!-- Bottom menus --> */}
         <Menu classnames={MenuStyles.bottomMenus}>
           <Divider label="Settings" />
-          {bottomMenus.map(({ name, icon, path }) => (
+          {bottomMenus.map(({ name, icon, path, onClickDarkMode }) => (
             <ItemList
               key={path}
               id={name}
               path={path}
               icon={icon}
               text={name}
-              onClickDarkMode={toggleDarkMode}
+              onClickDarkMode={onClickDarkMode}
               isActive={activeItem === name}
               onClick={setActiveItem}
               isCollapsed={isCollapsed}
