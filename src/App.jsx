@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./styles/global.css";
@@ -7,27 +6,17 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import AppLayout from "./components/AppLayout/AppLayout";
 import AppLayoutStyle from "./components/AppLayout/AppLayout.module.css";
 import MovieCard from "./components/MovieCard/MovieCard";
-// import MovieGrid from "./components/MovieGrid/MovieGrid";
 import Main from "./components/Main/Main";
-import { getMovies, getMovieByGenre, getGenres } from "./services/tmdb";
+import Category from "./pages/Category/Category";
+import MovieDetails from "./pages/MovieDetails/MovieDetails";
+import Search from "./pages/Search/Search";
+import Login from "./pages/Login/Login";
+import Genres from "./pages/Genres/Genres";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Favorites from "./pages/Favorites/Favorites";
 import NotFound from "./pages/NotFound/NotFound";
 function App() {
-  const movie = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-  ];
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const movies = await getMovies();
-      setMovies(movies);
-    };
-    fetchMovies();
-  }, []);
-  console.log(movies.length);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const toggleSidebar = () => {
@@ -54,10 +43,13 @@ function App() {
       return [...prev, movie];
     });
   };
-  console.log(favorites.length);
+
   return (
     <div>
-      <Sidebar isCollapsed={isSidebarCollapsed} getMovies={getMovies} />
+      <Sidebar
+        isCollapsed={isSidebarCollapsed}
+        // getMoviesByCategory={getMoviesByCategory}
+      />
       <AppLayout
         classnames={AppLayoutStyle.appLayout}
         isCollapsed={isSidebarCollapsed}
@@ -72,27 +64,50 @@ function App() {
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route
-              path="/settings"
-              element={<Favorites favorites={favorites} />}
+              path="/"
+              element={
+                <Home
+                  favorites={favorites}
+                  toggleFavoriteMovies={toggleFavoriteMovies}
+                />
+              }
+            />
+            <Route
+              path="/genre/:genreId"
+              element={
+                <Genres
+                  favorites={favorites}
+                  toggleFavoriteMovies={toggleFavoriteMovies}
+                />
+              }
+            />
+            <Route
+              path="/movie/:id"
+              element={
+                <MovieDetails
+                  favorites={favorites}
+                  toggleFavoriteMovies={toggleFavoriteMovies}
+                />
+              }
+            />
+            <Route path="/search" element={<Search />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/favorites"
+              element={
+                <Favorites
+                  favorites={favorites}
+                  toggleFavoriteMovies={toggleFavoriteMovies}
+                />
+              }
             />
             <Route
               path="/category/:type"
               element={
-                <>
-                  {movies.map((movie) => (
-                    <MovieCard
-                      key={movie.id}
-                      image={movie.poster_path}
-                      title={movie.title}
-                      movie={movie}
-                      toggleFavoriteMovies={toggleFavoriteMovies}
-                      isFavorite={favorites.some(
-                        (item) => item.id === movie.id,
-                      )}
-                      voteAverage={movie.vote_average}
-                    />
-                  ))}
-                </>
+                <Category
+                  toggleFavoriteMovies={toggleFavoriteMovies}
+                  favorites={favorites}
+                />
               }
             />
           </Routes>

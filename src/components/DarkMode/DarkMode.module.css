@@ -12,3 +12,6 @@
   background-color: dodgerblue;
   color: white;
 }
+.rotate {
+  transform: rotate(270deg);
+}

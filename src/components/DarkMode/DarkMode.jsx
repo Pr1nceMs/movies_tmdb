@@ -7,7 +7,7 @@ const DarkMode = ({ theme, toggleTheme }) => {
       className={
         theme === "light"
           ? `fas fa-sun ${styles.darkMode}`
-          : `fas fa-moon ${styles.darkMode} ${styles.darkModeActive}`
+          : `fas fa-moon ${styles.darkMode} ${styles.darkModeActive} ${styles.rotate}`
       }
     ></i>
   );

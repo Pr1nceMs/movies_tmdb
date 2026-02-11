@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import styles from "./LikeButton.module.css";
 const LikeButton = ({ toggleFavoriteMovies, isFavorite, movie }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsClicked((prev) => !prev);
     toggleFavoriteMovies(movie);
   };

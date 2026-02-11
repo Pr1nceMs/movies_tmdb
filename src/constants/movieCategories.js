@@ -1,8 +1,10 @@
 export const categories = [
+  // { name: "Accueil", icon: "fas fa-home", path: "/" },
   { name: "Populaire", icon: "fas fa-fire", path: "/category/popular" },
-  { name: "Mieux notés", icon: "fas fa-star", path: "/category/top-rated" },
+  { name: "Mieux notés", icon: "fas fa-star", path: "/category/top_rated" },
   { name: "À venir", icon: "fas fa-film", path: "/category/upcoming" },
-  { name: "Récompensés", icon: "fas fa-trophy", path: "/category/awarded" },
+  // { name: "Les plus récents", icon: "fas fa-clock", path: "/category/latest" },
+  { name: "En cours", icon: "fas fa-play", path: "/category/now_playing" },
 ];
 
 export const genres = [
@@ -27,4 +29,4 @@ export const genres = [
   { id: 37, name: "Western", icon: "fa-solid fa-horse-head" },
 ];
 
-console.log(genres.length);
+// console.log(genres.length);

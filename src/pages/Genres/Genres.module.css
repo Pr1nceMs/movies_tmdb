@@ -1,0 +1,24 @@
+.categoryText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--footer-text-color);
+  font-size: 1.5rem;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
+  font-weight: 600;
+}
+
+.movies {
+  padding: 15px 5px;
+  /* margin: 25px; */
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  transition: all 0.5s ease-in-out;
+  /* border: 2px solid red; */
+}

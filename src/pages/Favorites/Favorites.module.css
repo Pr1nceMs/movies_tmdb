@@ -5,10 +5,13 @@
   text-align: center;
   color: var(--footer-text-color);
   font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.underlinedText {
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
-  font-weight: 600;
 }
 
 .movies {
