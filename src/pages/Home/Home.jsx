@@ -19,14 +19,16 @@ const Home = ({ toggleFavoriteMovies, favorites }) => {
         const movies = await getMoviesByCategory("popular");
         setMovies(movies);
       } catch (error) {
-        setError(error);
+        setError("Erreur lors du chargement des films populaires");
       } finally {
         setLoading(false);
       }
     };
     loadMoviesByCategory();
   }, []);
-
+  if (error) {
+    return <p className={styles.error}>{error}</p>;
+  }
   return (
     <>
       {loading ? (

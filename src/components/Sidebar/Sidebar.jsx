@@ -103,7 +103,7 @@ const Sidebar = ({ isCollapsed }) => {
               path={path}
               icon={icon}
               text={name}
-              onClickDarkMode={() => onClickDarkMode()}
+              onClickDarkMode={onClickDarkMode}
               isActive={activeItem === name}
               onClick={setActiveItem}
               isCollapsed={isCollapsed}

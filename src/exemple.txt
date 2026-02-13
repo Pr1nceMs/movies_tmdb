@@ -134,6 +134,118 @@ export default App;
 
 
 
+import React from "react";
+import { useState, useEffect } from "react";
+import styles from "./SearchBar.module.css";
+import { useNavigate } from "react-router-dom";
+import { getMoviesBySearch } from "../../../services/tmdb";
+const SearchBar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchMoviesBySearch = async (query) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await getMoviesBySearch(query);
+      setMovies(data.results);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(e.target.value);
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${searchQuery}`);
+    }
+  };
+  useEffect(() => {
+    fetchMoviesBySearch(searchQuery);
+  }, [searchQuery]);
+  return (
+    <div className={styles.searchBar}>
+      <i className="fas fa-search" id={styles.fas}></i>
+      <input
+        type="search"
+        placeholder="Rechercher..."
+        name="search"
+        id={styles.search}
+        value={searchQuery}
+        onChange={handleSearch}
+      />
+    </div>
+  );
+};
+
+export default SearchBar;
+
+
+
+
+
+Implementation Plan - Real-time Search
+Goal
+Implement a real-time search experience where typing in the 
+SearchBar
+ immediately updates the /search page with results.
+
+Proposed Changes
+1. Service Layer (
+src/services/tmdb.js
+)
+ Fix 
+getMoviesBySearch
+ to return data.results instead of just logging them.
+2. SearchBar Component (
+src/components/Navbar/SearchBar/SearchBar.jsx
+)
+ Remove local data fetching logic (
+fetchMoviesBySearch
+, movies state).
+ Implement 
+handleSearch
+ to update the URL query parameter q as the user types.
+ Use replace: true in navigation to avoid polluting browser history with every keystroke.
+3. Search Page (
+src/pages/Search/Search.jsx
+)
+ Import useSearchParams to read the q query parameter.
+ Import 
+getMoviesBySearch
+ from services.
+ Implement useEffect to fetch movies whenever q changes.
+ Render the list of movies using 
+MovieCard
+ grid layout (similar to 
+Home.jsx
+ or 
+Category.jsx
+).
+ Handle loading and error states.
+Verification Plan
+Manual Verification
+Type in SearchBar:
+Go to any page.
+Type "Batman" in the search bar.
+Verify that the URL changes to /search?q=Batman.
+Verify that the /search page is displayed.
+Verify that movie results for "Batman" appear on the screen.
+Change Query:
+Modify the text to "Avatar".
+Verify results update automatically to show Avatar movies.
+Empty Query:
+Clear the search bar.
+Verify how the search page handles empty query (should probably show no results or a prompt).
+
+
+
+
 
 
 

@@ -10,7 +10,16 @@
   text-decoration-thickness: 2px;
   font-weight: 600;
 }
-
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: red;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 .movies {
   padding: 15px 5px;
   /* margin: 25px; */

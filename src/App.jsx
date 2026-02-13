@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import AppLayout from "./components/AppLayout/AppLayout";
 import AppLayoutStyle from "./components/AppLayout/AppLayout.module.css";
-import MovieCard from "./components/MovieCard/MovieCard";
 import Main from "./components/Main/Main";
 import Category from "./pages/Category/Category";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
@@ -82,7 +81,7 @@ function App() {
               }
             />
             <Route
-              path="/movie/:id"
+              path="/movie/:movieId"
               element={
                 <MovieDetails
                   favorites={favorites}
@@ -90,7 +89,15 @@ function App() {
                 />
               }
             />
-            <Route path="/search" element={<Search />} />
+            <Route
+              path="/search"
+              element={
+                <Search
+                  favorites={favorites}
+                  toggleFavoriteMovies={toggleFavoriteMovies}
+                />
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route
               path="/favorites"

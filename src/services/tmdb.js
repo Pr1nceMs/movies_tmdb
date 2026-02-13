@@ -8,7 +8,7 @@ export const getMoviesByCategory = async (type = "popular", page = 5) => {
   );
   const data = await response.json();
   // console.log("render pour getMovies");
-  // console.log(data.results);
+  console.log(data.results);
   return data.results;
 };
 
@@ -45,17 +45,19 @@ export const getMoviesBySearch = async (query, page = 1) => {
     `${BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&language=${LANGUAGE}&page=${page}&query=${query}`,
   );
   const data = await response.json();
-  console.log("render pour getMoviesBySearch");
-  console.log(data.results);
+  // console.log("render pour getMoviesBySearch");
+  // console.log(data.results);
+  return data.results;
 };
 
-export const getMovieById = async (id) => {
+export const getMovieDetails = async (movieId) => {
   const response = await fetch(
-    `${BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}&language=${LANGUAGE}`,
+    `${BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&language=${LANGUAGE}`,
   );
   const data = await response.json();
-  console.log("render pour getMovieById");
-  console.log(data);
+  // console.log("render pour getMovieById");
+  // console.log(data);
+  return data;
 };
 
 export const getMovieByKeyword = async (keywordId, page = 1) => {

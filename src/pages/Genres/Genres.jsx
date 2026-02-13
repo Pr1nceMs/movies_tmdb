@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { useParams } from "react-router-dom";
@@ -47,7 +48,7 @@ const Genres = ({ toggleFavoriteMovies, favorites }) => {
     };
     loadMoviesByGenre();
   }, [genreId]);
-  console.log(error);
+  // console.log(error);
   return (
     <>
       {loading ? (

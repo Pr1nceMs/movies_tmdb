@@ -6,8 +6,8 @@ const DarkMode = ({ theme, toggleTheme }) => {
       onClick={toggleTheme}
       className={
         theme === "light"
-          ? `fas fa-sun ${styles.darkMode}`
-          : `fas fa-moon ${styles.darkMode} ${styles.darkModeActive} ${styles.rotate}`
+          ? `fas fa-sun ${styles.darkMode} ${styles.fas}`
+          : `fas fa-moon ${styles.darkMode} ${styles.darkModeActive} ${styles.rotate} ${styles.fas}`
       }
     ></i>
   );

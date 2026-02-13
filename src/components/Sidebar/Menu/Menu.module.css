@@ -10,7 +10,7 @@ li.active {
 .bottomMenus li {
   display: flex;
   align-items: center;
-  padding: 12px;
+  /* padding: 12px; */
   margin: 10px 0;
   cursor: pointer;
   border-radius: var(--border-radius);
@@ -27,6 +27,7 @@ li.active {
 .menu li:hover,
 .bottomMenus li:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(15, 1, 69, 0.1); */
 }
 
 .menu li.currentMenu {

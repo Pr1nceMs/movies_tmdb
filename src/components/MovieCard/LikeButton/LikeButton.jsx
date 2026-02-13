@@ -14,9 +14,12 @@ const LikeButton = ({ toggleFavoriteMovies, isFavorite, movie }) => {
       onClick={handleClick}
     >
       {isFavorite ? (
-        <i className="fa-solid fa-heart" style={{ color: "#ff0000" }} />
+        <i
+          className={`fa-solid fa-heart ${styles.fas}`}
+          style={{ color: "#ff0000" }}
+        />
       ) : (
-        <i className="fas fa-heart" />
+        <i className={`fas fa-heart ${styles.fas}`} />
       )}
     </button>
   );

@@ -18,7 +18,7 @@ const ItemList = ({
       className={`${stylesItem.item} ${isActive ? stylesItem.active : ""}`}
       onClick={() => {
         onClick(id);
-        onClickDarkMode();
+        if (onClickDarkMode) onClickDarkMode();
       }}
     >
       <Link to={path} className={stylesItem.link}>

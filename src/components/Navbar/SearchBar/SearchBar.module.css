@@ -28,3 +28,10 @@ input[type="search"]:focus {
 /* input[type="search"]::placeholder {
   color: dodgerblue;
 } */
+
+@media screen and (max-width: 560px) {
+  .searchBar {
+    width: 210px;
+    /* height: 330px; */
+  }
+}
