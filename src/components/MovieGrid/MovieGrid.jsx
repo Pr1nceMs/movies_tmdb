@@ -3,7 +3,7 @@ import MovieCard from "../MovieCard/MovieCard";
 const MovieGrid = ({ movies, toggleFavoriteMovies, favorites }) => {
   return (
     <>
-      {movies.map((movie) => (
+      {movies?.map((movie) => (
         <MovieCard
           key={movie.id}
           image={movie.poster_path}

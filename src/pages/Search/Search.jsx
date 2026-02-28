@@ -2,14 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getMoviesBySearch } from "../../services/tmdb";
-import MovieCard from "../../components/MovieCard/MovieCard";
 import Loader from "../../components/Loader/Loader";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
+import Footer from "../../components/Footer/Footer";
 import styles from "./Search.module.css";
 
 const Search = ({ toggleFavoriteMovies, favorites }) => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
+  const page = Number(searchParams.get("page")) || 1;
 
+  const [totalPages, setTotalPages] = useState(1);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,8 +24,9 @@ const Search = ({ toggleFavoriteMovies, favorites }) => {
       setLoading(true);
       setError(null);
       try {
-        const results = await getMoviesBySearch(query);
-        setMovies(results);
+        const results = await getMoviesBySearch(query, page);
+        setMovies(results.results);
+        setTotalPages(results.total_pages);
       } catch (err) {
         setError("Erreur lors de la recherche");
       } finally {
@@ -31,7 +35,7 @@ const Search = ({ toggleFavoriteMovies, favorites }) => {
     };
 
     fetchMovies();
-  }, [query]);
+  }, [query, page]);
   const notFoundMoviesSearch = query && movies.length === 0;
   return (
     <>
@@ -43,26 +47,23 @@ const Search = ({ toggleFavoriteMovies, favorites }) => {
             {query ? `Résultats pour "${query}"` : "Rechercher un film"}
           </div>
           <div className={styles.movies}>
-            {movies && movies.length > 0
-              ? movies.map((movie) => (
-                  <MovieCard
-                    key={movie.id}
-                    image={movie.poster_path}
-                    title={movie.title}
-                    movie={movie}
-                    toggleFavoriteMovies={toggleFavoriteMovies}
-                    isFavorite={favorites.some((item) => item.id === movie.id)}
-                    voteAverage={movie.vote_average}
-                  />
-                ))
-              : query && (
-                  <p className={styles.noResults}>
-                    Aucun résultat trouvé pour "{query}"
-                  </p>
-                )}
+            {movies && movies.length > 0 ? (
+              <MovieGrid
+                movies={movies}
+                toggleFavoriteMovies={toggleFavoriteMovies}
+                favorites={favorites}
+              />
+            ) : (
+              query && (
+                <p className={styles.noResults}>
+                  Aucun résultat trouvé pour "{query}"
+                </p>
+              )
+            )}
           </div>
         </>
       )}
+      <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );
 };

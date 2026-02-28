@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { getMovieDetails } from "../../services/tmdb";
 import styles from "./MovieDetails.module.css";
 import SpinnerLoader from "../../components/SpinnerLoader/SpinnerLoader";
+import Ratings from "../../components/MovieCard/Ratings/Ratings";
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
   useEffect(() => {
     const fetchMovie = async () => {
       const response = await getMovieDetails(movieId);
@@ -20,6 +20,7 @@ const MovieDetails = () => {
   //   backgroundSize: "cover",
   //   backgroundPosition: "center",
   // };
+
   if (!movie)
     return (
       <div className={styles.movieError}>
@@ -28,15 +29,41 @@ const MovieDetails = () => {
     );
   return (
     <div className={styles.movieDetails}>
-      <img
-        className={styles.movieImg}
-        src={`https://images.tmdb.org/t/p/original${movie?.backdrop_path}`}
-        alt=""
+      {/* Background */}
+      <div
+        className={styles.background}
+        style={{
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+        }}
       />
-      {/* <div className={styles.content}>
-        <h1>{movie.title}</h1>
-        <p>{movie.overview}</p>
-      </div> */}
+
+      {/* Overlay gradient */}
+      <div className={styles.overlay} />
+
+      {/* Content */}
+      <div className={styles.content}>
+        <div className={styles.posterSection}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+        </div>
+
+        <div className={styles.infoSection}>
+          <h1>{movie.title}</h1>
+          <p className={styles.tagline}>{movie.tagline}</p>
+
+          <div className={styles.meta}>
+            <span>{movie.release_date}</span>
+            <span>
+              <Ratings voteAverage={movie.vote_average} />
+            </span>
+            <span>{movie.runtime} min</span>
+          </div>
+
+          <p className={styles.overview}>{movie.overview}</p>
+        </div>
+      </div>
     </div>
   );
 };

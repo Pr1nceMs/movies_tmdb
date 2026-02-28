@@ -1,0 +1,42 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.pageBtn,
+.navBtn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--card-bg);
+  color: var(--footer-text-color);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.pageBtn:hover,
+.navBtn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+.navBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dots {
+  padding: 0 8px;
+  opacity: 0.6;
+}

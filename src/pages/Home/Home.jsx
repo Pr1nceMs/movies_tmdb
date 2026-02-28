@@ -1,14 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getMoviesByCategory } from "../../services/tmdb";
-import MovieCard from "../../components/MovieCard/MovieCard";
 import styles from "./Home.module.css";
+import Footer from "../../components/Footer/Footer";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
 const Home = ({ toggleFavoriteMovies, favorites }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
+  const [totalPages, setTotalPages] = useState(1);
 
   // const { type } = useParams();
 
@@ -16,8 +22,9 @@ const Home = ({ toggleFavoriteMovies, favorites }) => {
     const loadMoviesByCategory = async () => {
       try {
         setLoading(true);
-        const movies = await getMoviesByCategory("popular");
-        setMovies(movies);
+        const movies = await getMoviesByCategory("popular", page);
+        setMovies(movies.results);
+        setTotalPages(movies.total_pages);
       } catch (error) {
         setError("Erreur lors du chargement des films populaires");
       } finally {
@@ -25,7 +32,7 @@ const Home = ({ toggleFavoriteMovies, favorites }) => {
       }
     };
     loadMoviesByCategory();
-  }, []);
+  }, [page]);
   if (error) {
     return <p className={styles.error}>{error}</p>;
   }
@@ -37,20 +44,15 @@ const Home = ({ toggleFavoriteMovies, favorites }) => {
         <>
           <div className={styles.categoryText}>Films populaires</div>
           <div className={styles.movies}>
-            {movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                image={movie.poster_path}
-                title={movie.title}
-                movie={movie}
-                toggleFavoriteMovies={toggleFavoriteMovies}
-                isFavorite={favorites.some((item) => item.id === movie.id)}
-                voteAverage={movie.vote_average}
-              />
-            ))}
+            <MovieGrid
+              movies={movies}
+              toggleFavoriteMovies={toggleFavoriteMovies}
+              favorites={favorites}
+            />
           </div>
         </>
       )}
+      <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );
 };

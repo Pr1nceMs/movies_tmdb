@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./Footer.module.css";
-
-const Footer = () => {
+import Pagination from "../ui/Pagination/Pagination";
+const Footer = ({ currentPage, totalPages }) => {
   return (
     <footer className={styles.footer}>
-      <p>Footer</p>
+      <>
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      </>
     </footer>
   );
 };

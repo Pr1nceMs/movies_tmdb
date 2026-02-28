@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./styles/global.css";
+import MovieDetailsContextProvider from "./context/MovieDetailsContext";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import AppLayout from "./components/AppLayout/AppLayout";
@@ -59,67 +60,69 @@ function App() {
           toggleTheme={toggleTheme}
           theme={theme}
         />
-        <Main isCollapsed={isSidebarCollapsed}>
-          <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route
-              path="/"
-              element={
-                <Home
-                  favorites={favorites}
-                  toggleFavoriteMovies={toggleFavoriteMovies}
-                />
-              }
-            />
-            <Route
-              path="/genre/:genreId"
-              element={
-                <Genres
-                  favorites={favorites}
-                  toggleFavoriteMovies={toggleFavoriteMovies}
-                />
-              }
-            />
-            <Route
-              path="/movie/:movieId"
-              element={
-                <MovieDetails
-                  favorites={favorites}
-                  toggleFavoriteMovies={toggleFavoriteMovies}
-                />
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                <Search
-                  favorites={favorites}
-                  toggleFavoriteMovies={toggleFavoriteMovies}
-                />
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/favorites"
-              element={
-                <Favorites
-                  favorites={favorites}
-                  toggleFavoriteMovies={toggleFavoriteMovies}
-                />
-              }
-            />
-            <Route
-              path="/category/:type"
-              element={
-                <Category
-                  toggleFavoriteMovies={toggleFavoriteMovies}
-                  favorites={favorites}
-                />
-              }
-            />
-          </Routes>
-        </Main>
-        <Footer />
+        <MovieDetailsContextProvider>
+          <Main isCollapsed={isSidebarCollapsed}>
+            <Routes>
+              <Route path="*" element={<NotFound />} />
+              <Route
+                path="/"
+                element={
+                  <Home
+                    favorites={favorites}
+                    toggleFavoriteMovies={toggleFavoriteMovies}
+                  />
+                }
+              />
+              <Route
+                path="/genre/:genreId"
+                element={
+                  <Genres
+                    favorites={favorites}
+                    toggleFavoriteMovies={toggleFavoriteMovies}
+                  />
+                }
+              />
+              <Route
+                path="/movie/:movieId"
+                element={
+                  <MovieDetails
+                    favorites={favorites}
+                    toggleFavoriteMovies={toggleFavoriteMovies}
+                  />
+                }
+              />
+              <Route
+                path="/search"
+                element={
+                  <Search
+                    favorites={favorites}
+                    toggleFavoriteMovies={toggleFavoriteMovies}
+                  />
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/favorites"
+                element={
+                  <Favorites
+                    favorites={favorites}
+                    toggleFavoriteMovies={toggleFavoriteMovies}
+                  />
+                }
+              />
+              <Route
+                path="/category/:type"
+                element={
+                  <Category
+                    toggleFavoriteMovies={toggleFavoriteMovies}
+                    favorites={favorites}
+                  />
+                }
+              />
+            </Routes>
+          </Main>
+        </MovieDetailsContextProvider>
+        {/* <Footer /> */}
       </AppLayout>
     </div>
   );

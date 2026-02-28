@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { getMoviesByCategory } from "../../services/tmdb";
-import MovieCard from "../../components/MovieCard/MovieCard";
+import Footer from "../../components/Footer/Footer";
 import styles from "./Category.module.css";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
 
 const titles = {
   popular: "Films populaires",
@@ -20,12 +21,18 @@ const Category = ({ toggleFavoriteMovies, favorites }) => {
 
   const { type } = useParams();
 
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     const loadMoviesByCategory = async () => {
       try {
         setLoading(true);
-        const movies = await getMoviesByCategory(type);
-        setMovies(movies);
+        const movies = await getMoviesByCategory(type, page);
+        setMovies(movies.results);
+        setTotalPages(movies.total_pages);
       } catch (error) {
         setError(error);
       } finally {
@@ -33,7 +40,7 @@ const Category = ({ toggleFavoriteMovies, favorites }) => {
       }
     };
     loadMoviesByCategory();
-  }, [type]);
+  }, [type, page]);
   // console.log(error);
   return (
     <>
@@ -45,20 +52,15 @@ const Category = ({ toggleFavoriteMovies, favorites }) => {
             {titles[type] || "Films " + type}
           </div>
           <div className={styles.movies}>
-            {movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                image={movie.poster_path}
-                title={movie.title}
-                movie={movie}
-                toggleFavoriteMovies={toggleFavoriteMovies}
-                isFavorite={favorites.some((item) => item.id === movie.id)}
-                voteAverage={movie.vote_average}
-              />
-            ))}
+            <MovieGrid
+              movies={movies}
+              toggleFavoriteMovies={toggleFavoriteMovies}
+              favorites={favorites}
+            />
           </div>
         </>
       )}
+      <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );
 };

@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { getMoviesByGenre } from "../../services/tmdb";
-import MovieCard from "../../components/MovieCard/MovieCard";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
+import Footer from "../../components/Footer/Footer";
 import styles from "./Genres.module.css";
 
 const genreNames = {
@@ -34,12 +35,18 @@ const Genres = ({ toggleFavoriteMovies, favorites }) => {
 
   const { genreId } = useParams();
 
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     const loadMoviesByGenre = async () => {
       try {
         setLoading(true);
-        const movies = await getMoviesByGenre(genreId);
-        setMovies(movies);
+        const movies = await getMoviesByGenre(genreId, page);
+        setMovies(movies.results);
+        setTotalPages(movies.total_pages);
       } catch (error) {
         setError(error);
       } finally {
@@ -47,7 +54,7 @@ const Genres = ({ toggleFavoriteMovies, favorites }) => {
       }
     };
     loadMoviesByGenre();
-  }, [genreId]);
+  }, [genreId, page]);
   // console.log(error);
   return (
     <>
@@ -59,20 +66,15 @@ const Genres = ({ toggleFavoriteMovies, favorites }) => {
             {genreNames[genreId] || "Films " + genreId}
           </div>
           <div className={styles.movies}>
-            {movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                image={movie.poster_path}
-                title={movie.title}
-                movie={movie}
-                toggleFavoriteMovies={toggleFavoriteMovies}
-                isFavorite={favorites.some((item) => item.id === movie.id)}
-                voteAverage={movie.vote_average}
-              />
-            ))}
+            <MovieGrid
+              movies={movies}
+              toggleFavoriteMovies={toggleFavoriteMovies}
+              favorites={favorites}
+            />
           </div>
         </>
       )}
+      <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );
 };

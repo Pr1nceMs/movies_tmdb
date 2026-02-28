@@ -1,7 +1,8 @@
 .footer {
   height: 80px;
-  box-shadow: var(--box-shadow);
-  background: var(--footer-color);
+  margin-top: 30px;
+  /* box-shadow: var(--box-shadow); */
+  /* background: var(--footer-color); */
   color: var(--footer-text-color);
   display: flex;
   align-items: center;
