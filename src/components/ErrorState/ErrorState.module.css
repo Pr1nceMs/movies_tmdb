@@ -1,0 +1,39 @@
+.container {
+  text-align: center;
+  padding: 3rem;
+  color: #e74c3c;
+  width: fit-content;
+  /* border: 2px solid green; */
+}
+
+.message {
+  margin: 1rem 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  /* gap: 1rem; */
+}
+
+.retryBtn {
+  font-size: 0.9rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: dodgerblue;
+  color: aliceblue;
+  transition: background-color var(--transition-speed);
+  outline: none;
+  border: none;
+}
+.retryBtn:hover {
+  background-color: aliceblue;
+  color: var(--primary-color);
+  outline: 3px solid var(--primary-color);
+}
+a.homeLink {
+  text-decoration: none;
+  font-weight: bold;
+}

@@ -370,3 +370,79 @@ export const getCategories = async () => {
   console.log("render pour getCategories");
   console.log(data.genres);
 };
+
+
+
+   // In your useFavorites.js or similar file
+    import { useState, useCallback } from 'react';
+
+    const useFavorites = () => {
+      const [favorites, setFavorites] = useState([]); // Or initialize from localStorage, etc.
+
+      const toggleFavoriteMovies = useCallback((movie) => {
+        setFavorites(prevFavorites => {
+          const isFavorite = prevFavorites.some(fav => fav.id === movie.id);
+          if (isFavorite) {
+            return prevFavorites.filter(fav => fav.id !== movie.id);
+          } else {
+            return [...prevFavorites, movie];
+          }
+        });
+      }, []);
+
+      return [favorites, toggleFavoriteMovies];
+    };
+
+    export default useFavorites; // Or export with named export if preferred
+
+
+
+
+
+
+
+
+
+
+    // src/context/FavoritesContext.jsx
+import React, { createContext, useContext, useState } from 'react';
+
+const FavoritesContext = createContext(null);
+
+// Change `export default function useFavorites()` to `export function useFavorites()`
+export function useFavorites() { // This is now a named export
+  const context = useContext(FavoritesContext);
+  if (!context) {
+    throw new Error('useFavorites must be used within a FavoritesProvider');
+  }
+  return context;
+}
+
+export function FavoritesProvider({ children }) {
+  const [favorites, setFavorites] = useState([]);
+
+  const addFavorite = (movie) => {
+    setFavorites((prev) => [...prev, movie]);
+  };
+
+  const removeFavorite = (movieId) => {
+    setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+  };
+
+  const isFavorite = (movieId) => {
+    return favorites.some((movie) => movie.id === movieId);
+  };
+
+  const value = {
+    favorites,
+    addFavorite,
+    removeFavorite,
+    isFavorite,
+  };
+
+  return (
+    <FavoritesContext.Provider value={value}>
+      {children}
+    </FavoritesContext.Provider>
+  );
+}

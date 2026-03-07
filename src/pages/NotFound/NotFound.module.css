@@ -3,5 +3,6 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  color: black;
+  color: var(--footer-text-color);
+  font-size: 1.3rem;
 }

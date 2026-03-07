@@ -1,0 +1,35 @@
+  if (error) {
+    return (
+      <div style={{ textAlign: "center", padding: "2rem" }}>
+        <h2>Oups 😕</h2>
+        <p>{error}</p>
+
+        {error === "Catégorie introuvable" && (
+          <Link to="/">Retour à l'accueil</Link>
+        )}
+
+        <button onClick={loadMoviesByCategory}>
+          Réessayer
+        </button>
+      </div>
+    );
+  }
+
+
+
+
+    useEffect(() => {
+    const loadMoviesByCategory = async () => {
+      try {
+        setLoading(true);
+        const movies = await getMoviesByCategory("popular", page);
+        setMovies(movies.results);
+        setTotalPages(movies.total_pages);
+      } catch (error) {
+        setError("Erreur lors du chargement des films populaires");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadMoviesByCategory();
+  }, [page]);

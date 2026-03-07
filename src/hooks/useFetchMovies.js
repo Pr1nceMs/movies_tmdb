@@ -1,56 +1,44 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
-export const useFetchMovies = (fetchFunction, param) => {
+export const useFetchMovies = (fetchFunction, dependencies = []) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const loadMovies = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const data = await fetchFunction();
+      setMovies(data.results);
+      setTotalPages(data.total_pages);
+    } catch (err) {
+      //  Traduction centralisée des erreurs
+      switch (err.message) {
+        case "NOT_FOUND":
+          setError("La ressource demandée est introuvable.");
+          break;
+
+        case "SERVER_ERROR":
+          setError("Le serveur rencontre un problème. Réessayez plus tard.");
+          break;
+
+        default:
+          setError("Une erreur inattendue est survenue.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchFunction(param);
-        setMovies(data.results);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (dependencies) {
+      loadMovies();
+    }
+  }, dependencies);
 
-    load();
-  }, [fetchFunction, param]);
-
-  return { movies, loading, error };
+  return { movies, loading, error, totalPages, refetch: loadMovies };
 };
-
-// import { useState, useEffect } from "react";
-
-// export const useFetchMovies = (fetchFunction, param) => {
-//   const [movies, setMovies] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const loadMovies = async () => {
-//       try {
-//         setLoading(true);
-//         setError(null);
-
-//         const data = await fetchFunction(param);
-//         setMovies(data.results);
-
-//       } catch (err) {
-//         setError(err.message || "Erreur");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     if (param) {
-//       loadMovies();
-//     }
-//   }, [fetchFunction, param]);
-
-//   return { movies, loading, error };
-// };

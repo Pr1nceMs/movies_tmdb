@@ -6,6 +6,7 @@ import { getMoviesByCategory } from "../../services/tmdb";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Category.module.css";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
+import { useFavorites } from "../../context/FavoritesContext";
 
 const titles = {
   popular: "Films populaires",
@@ -14,10 +15,11 @@ const titles = {
   now_playing: "Films en cours de sortie",
   latest: "Films les plus récents",
 };
-const Category = ({ toggleFavoriteMovies, favorites }) => {
+const Category = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("Erreur lors du chargement des films");
+  // const { favorites, toggleFavoriteMovies } = useFavorites();
 
   const { type } = useParams();
 
@@ -44,22 +46,22 @@ const Category = ({ toggleFavoriteMovies, favorites }) => {
   // console.log(error);
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <Loader />
-      ) : (
-        <>
-          <div className={styles.categoryText}>
-            {titles[type] || "Films " + type}
-          </div>
-          <div className={styles.movies}>
-            <MovieGrid
-              movies={movies}
-              toggleFavoriteMovies={toggleFavoriteMovies}
-              favorites={favorites}
-            />
-          </div>
-        </>
-      )}
+      ) : ( */}
+      <>
+        <div className={styles.categoryText}>
+          {titles[type] || "Films " + type}
+        </div>
+        <div className={styles.movies}>
+          <MovieGrid
+            movies={movies}
+            // toggleFavoriteMovies={toggleFavoriteMovies}
+            // favorites={favorites}
+          />
+        </div>
+      </>
+      {/* )} */}
       <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );

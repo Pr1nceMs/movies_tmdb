@@ -4,9 +4,13 @@ import { getMovieDetails } from "../../services/tmdb";
 import styles from "./MovieDetails.module.css";
 import SpinnerLoader from "../../components/SpinnerLoader/SpinnerLoader";
 import Ratings from "../../components/MovieCard/Ratings/Ratings";
+// import { useFavorites } from "../../context/FavoritesContext";
+
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  // const [favorites, toggleFavoriteMovies] = useFavorites();
+
   useEffect(() => {
     const fetchMovie = async () => {
       const response = await getMovieDetails(movieId);

@@ -1,15 +1,30 @@
 .categoryText {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   text-align: center;
+  /* gap: 190px; */
   color: var(--footer-text-color);
   font-size: 1.5rem;
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
   font-weight: 600;
+  border: 2px solid green;
+  width: 80%;
+  position: relative;
 }
+
+.hone {
+  position: absolute;
+  left: 0;
+}
+/* .htwo {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  border: 4px solid red;
+} */
 .error {
   display: flex;
   align-items: center;

@@ -1,6 +1,9 @@
 import React from "react";
 import MovieCard from "../MovieCard/MovieCard";
-const MovieGrid = ({ movies, toggleFavoriteMovies, favorites }) => {
+import { useFavorites } from "../../context/FavoritesContext";
+const MovieGrid = ({ movies = [] }) => {
+  const { favorites, toggleFavoriteMovies } = useFavorites();
+
   return (
     <>
       {movies?.map((movie) => (

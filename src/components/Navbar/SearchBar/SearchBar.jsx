@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./SearchBar.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -12,12 +12,16 @@ const SearchBar = () => {
     const query = e.target.value;
     setSearchQuery(query);
     if (query.trim()) {
-      navigate(`/search?q=${query}`, { replace: true });
+      navigate(`/search?query=${query}`, { replace: true });
     } else {
-      navigate(`/search`);
+      navigate("/search");
     }
   };
-
+  // useEffect(() => {
+  //   if (query.trim() === "") {
+  //     navigate(-1);
+  //   }
+  // }, [query]);
   return (
     <div className={styles.searchBar}>
       <i className="fas fa-search" id={styles.fas}></i>

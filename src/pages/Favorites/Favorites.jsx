@@ -1,26 +1,21 @@
 import React from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import { useFavorites } from "../../context/FavoritesContext";
+
 import styles from "./Favorites.module.css";
-const Favorites = ({ favorites, toggleFavoriteMovies }) => {
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
+const Favorites = () => {
+  const { favorites } = useFavorites();
+
   return favorites.length === 0 ? (
-    <div className={styles.categoryText}>Aucun film favori</div>
+    <div className={styles.categoryText}>Aucun film favori pour le moment</div>
   ) : (
     <>
       <div className={`${styles.categoryText} ${styles.underlinedText}`}>
         Mes films favoris
       </div>
       <div className={styles.movies}>
-        {favorites.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            image={movie.poster_path}
-            title={movie.title}
-            movie={movie}
-            toggleFavoriteMovies={toggleFavoriteMovies}
-            isFavorite={true}
-            voteAverage={movie.vote_average}
-          />
-        ))}
+        <MovieGrid movies={favorites} />
       </div>
     </>
   );

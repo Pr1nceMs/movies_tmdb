@@ -6,9 +6,18 @@ export const getMoviesByCategory = async (type = "popular", page = 1) => {
   const response = await fetch(
     `${BASE_URL}/movie/${type}?api_key=${TMDB_API_KEY}&language=${LANGUAGE}&page=${page}`,
   );
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("NOT_FOUND");
+    }
+    if (response.status >= 500) {
+      throw new Error("SERVER_ERROR");
+    }
+    throw new Error("UNKNOWN_ERROR");
+  }
+
   const data = await response.json();
-  // console.log("render pour getMovies");
-  // console.log(data.total_pages);
   return data;
 };
 
@@ -16,29 +25,37 @@ export const getMoviesByGenre = async (genreId, page = 1) => {
   const response = await fetch(
     `${BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&language=${LANGUAGE}&page=${page}&with_genres=${genreId}`,
   );
-  const data = await response.json();
-  // console.log("render pour getMovieByGenre");
-  // console.log(data.results);
-  return data;
-};
 
-export const getGenres = async () => {
-  const response = await fetch(
-    `${BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}&language=${LANGUAGE}`,
-  );
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("NOT_FOUND");
+    }
+    if (response.status >= 500) {
+      throw new Error("SERVER_ERROR");
+    }
+    throw new Error("UNKNOWN_ERROR");
+  }
+
   const data = await response.json();
-  // console.log("render pour getGenres");
-  // console.log(data.genres);
-  return data.genres;
+  return data;
 };
 
 export const getMoviesBySearch = async (query, page = 1) => {
   const response = await fetch(
     `${BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&language=${LANGUAGE}&page=${page}&query=${query}`,
   );
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("NOT_FOUND");
+    }
+    if (response.status >= 500) {
+      throw new Error("SERVER_ERROR");
+    }
+    throw new Error("UNKNOWN_ERROR");
+  }
+
   const data = await response.json();
-  // console.log("render pour getMoviesBySearch");
-  // console.log(data.results);
   return data;
 };
 
@@ -46,8 +63,36 @@ export const getMovieDetails = async (movieId) => {
   const response = await fetch(
     `${BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&language=${LANGUAGE}`,
   );
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("NOT_FOUND");
+    }
+    if (response.status >= 500) {
+      throw new Error("SERVER_ERROR");
+    }
+    throw new Error("UNKNOWN_ERROR");
+  }
+
   const data = await response.json();
-  // console.log("render pour getMovieById");
-  // console.log(data);
   return data;
+};
+
+export const getGenres = async () => {
+  const response = await fetch(
+    `${BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}&language=${LANGUAGE}`,
+  );
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("NOT_FOUND");
+    }
+    if (response.status >= 500) {
+      throw new Error("SERVER_ERROR");
+    }
+    throw new Error("UNKNOWN_ERROR");
+  }
+
+  const data = await response.json();
+  return data.genres;
 };

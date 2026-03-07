@@ -5,17 +5,19 @@ import { getMoviesBySearch } from "../../services/tmdb";
 import Loader from "../../components/Loader/Loader";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import Footer from "../../components/Footer/Footer";
+import { useFavorites } from "../../context/FavoritesContext";
 import styles from "./Search.module.css";
 
-const Search = ({ toggleFavoriteMovies, favorites }) => {
+const Search = () => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
+  const query = searchParams.get("query");
   const page = Number(searchParams.get("page")) || 1;
 
   const [totalPages, setTotalPages] = useState(1);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  // const { favorites, toggleFavoriteMovies } = useFavorites();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -39,30 +41,30 @@ const Search = ({ toggleFavoriteMovies, favorites }) => {
   const notFoundMoviesSearch = query && movies.length === 0;
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <Loader />
-      ) : (
-        <>
-          <div className={styles.categoryText}>
-            {query ? `Résultats pour "${query}"` : "Rechercher un film"}
-          </div>
-          <div className={styles.movies}>
-            {movies && movies.length > 0 ? (
-              <MovieGrid
-                movies={movies}
-                toggleFavoriteMovies={toggleFavoriteMovies}
-                favorites={favorites}
-              />
-            ) : (
-              query && (
-                <p className={styles.noResults}>
-                  Aucun résultat trouvé pour "{query}"
-                </p>
-              )
-            )}
-          </div>
-        </>
-      )}
+      ) : ( */}
+      <>
+        <div className={styles.categoryText}>
+          {query ? `Résultats pour "${query}"` : "Rechercher un film"}
+        </div>
+        <div className={styles.movies}>
+          {movies && movies.length > 0 ? (
+            <MovieGrid
+              movies={movies}
+              // toggleFavoriteMovies={toggleFavoriteMovies}
+              // favorites={favorites}
+            />
+          ) : (
+            query && (
+              <p className={styles.noResults}>
+                Aucun résultat trouvé pour "{query}"
+              </p>
+            )
+          )}
+        </div>
+      </>
+      {/* )} */}
       <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );

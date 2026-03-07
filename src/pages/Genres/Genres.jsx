@@ -5,6 +5,8 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { getMoviesByGenre } from "../../services/tmdb";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import Footer from "../../components/Footer/Footer";
+import { useFavorites } from "../../context/FavoritesContext";
+
 import styles from "./Genres.module.css";
 
 const genreNames = {
@@ -28,10 +30,11 @@ const genreNames = {
   10752: "Guerre",
   37: "Western",
 };
-const Genres = ({ toggleFavoriteMovies, favorites }) => {
+const Genres = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("Erreur lors du chargement des films");
+  // const { favorites, toggleFavoriteMovies } = useFavorites();
 
   const { genreId } = useParams();
 
@@ -58,22 +61,22 @@ const Genres = ({ toggleFavoriteMovies, favorites }) => {
   // console.log(error);
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <Loader count={20} />
-      ) : (
-        <>
-          <div className={styles.categoryText}>
-            {genreNames[genreId] || "Films " + genreId}
-          </div>
-          <div className={styles.movies}>
-            <MovieGrid
-              movies={movies}
-              toggleFavoriteMovies={toggleFavoriteMovies}
-              favorites={favorites}
-            />
-          </div>
-        </>
-      )}
+      ) : ( */}
+      <>
+        <div className={styles.categoryText}>
+          {genreNames[genreId] || "Films " + genreId}
+        </div>
+        <div className={styles.movies}>
+          <MovieGrid
+            movies={movies}
+            // toggleFavoriteMovies={toggleFavoriteMovies}
+            // favorites={favorites}
+          />
+        </div>
+      </>
+      {/* )} */}
       <Footer currentPage={page} totalPages={Math.min(totalPages, 500)} />
     </>
   );
