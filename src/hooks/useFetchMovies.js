@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 export const useFetchMovies = (fetchFunction, dependencies = []) => {
   const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
@@ -13,6 +14,7 @@ export const useFetchMovies = (fetchFunction, dependencies = []) => {
       setError(null);
 
       const data = await fetchFunction();
+      setMovie(data);
       setMovies(data.results);
       setTotalPages(data.total_pages);
     } catch (err) {
@@ -40,5 +42,5 @@ export const useFetchMovies = (fetchFunction, dependencies = []) => {
     }
   }, dependencies);
 
-  return { movies, loading, error, totalPages, refetch: loadMovies };
+  return { movie, movies, loading, error, totalPages, refetch: loadMovies };
 };

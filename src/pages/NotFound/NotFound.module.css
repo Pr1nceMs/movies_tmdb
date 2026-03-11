@@ -2,7 +2,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   flex: 1;
+  gap: 20px;
   color: var(--footer-text-color);
   font-size: 1.3rem;
+}
+.btnHome {
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: aliceblue;
+  background-color: dodgerblue;
+  transition: background-color 0.5s ease;
+}
+.btnHome:hover {
+  background-color: aliceblue;
+  color: dodgerblue;
+  outline: 3px solid dodgerblue;
 }

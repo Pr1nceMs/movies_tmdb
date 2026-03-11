@@ -17,10 +17,6 @@ const Home = () => {
     [page],
   );
 
-  const handleBack = () => {
-    window.history.back();
-  };
-
   if (error) {
     // return <p className={styles.error}>{error}</p>;
     return <ErrorState message={error} showHomeLink={true} onRetry={refetch} />;
@@ -31,21 +27,9 @@ const Home = () => {
         <Loader />
       ) : ( */}
       <>
-        <div className={styles.categoryText}>
-          <button
-            onClick={handleBack}
-            className={`fas fa-arrow-left ${styles.hone}`}
-          >
-            Retour
-          </button>
-          <h4 className={styles.htwo}> Films populaires</h4>
-        </div>
+        <div className={styles.categoryText}>Films populaires</div>
         <div className={styles.movies}>
-          <MovieGrid
-            movies={movies}
-            // favorites={favorites}
-            // toggleFavoriteMovies={toggleFavoriteMovies}
-          />
+          <MovieGrid movies={movies} />
         </div>
       </>
       {/* )} */}

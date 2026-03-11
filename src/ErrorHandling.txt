@@ -33,3 +33,35 @@
     };
     loadMoviesByCategory();
   }, [page]);
+
+///// Petite modification sur le texte de Home avec l'ajout d'un bouton retour
+
+
+            <button onClick={handleBack} className={` ${styles.hone}`}>
+            Retour
+          </button>
+          <h4 className={styles.htwo}> Films populaires</h4>
+
+
+            // const handleBack = () => {  window.history.back();};
+
+
+
+
+
+
+
+              const { movies, error, refetch } = useFetchMovies(
+    () => getMovieDetails(movieId),
+    [movieId],
+  );
+
+  if (error)
+    return <ErrorState message={error} showHomeLink={true} onRetry={refetch} />;
+
+  if (!movies)
+    return (
+      <div className={styles.movieError}>
+        <SpinnerLoader />
+      </div>
+    );

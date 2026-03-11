@@ -10,14 +10,32 @@
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
   font-weight: 600;
-  border: 2px solid green;
-  width: 80%;
-  position: relative;
+  /* border: 2px solid green; */
+  /* width: 80%; */
+  /* position: relative; */
 }
 
 .hone {
   position: absolute;
   left: 0;
+}
+button.hone {
+  font-size: 0.9rem;
+  font-family: Poppins;
+  font-weight: 500;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: dodgerblue;
+  color: aliceblue;
+  transition: background-color var(--transition-speed);
+  outline: none;
+  border: none;
+}
+button.hone:hover {
+  background-color: aliceblue;
+  color: var(--primary-color);
+  outline: 3px solid var(--primary-color);
 }
 /* .htwo {
   text-align: center;

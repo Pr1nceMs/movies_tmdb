@@ -1,44 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { getMoviesBySearch } from "../../services/tmdb";
 import Loader from "../../components/Loader/Loader";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import Footer from "../../components/Footer/Footer";
-import { useFavorites } from "../../context/FavoritesContext";
 import styles from "./Search.module.css";
+import { useFetchMovies } from "../../hooks/useFetchMovies";
+import ErrorState from "../../components/ErrorState/ErrorState";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
   const page = Number(searchParams.get("page")) || 1;
 
-  const [totalPages, setTotalPages] = useState(1);
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  // const { favorites, toggleFavoriteMovies } = useFavorites();
+  const { movies, error, totalPages, refetch } = useFetchMovies(
+    () => getMoviesBySearch(query, page),
+    [query, page],
+  );
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      if (!query) return;
-
-      setLoading(true);
-      setError(null);
-      try {
-        const results = await getMoviesBySearch(query, page);
-        setMovies(results.results);
-        setTotalPages(results.total_pages);
-      } catch (err) {
-        setError("Erreur lors de la recherche");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
-  }, [query, page]);
   const notFoundMoviesSearch = query && movies.length === 0;
+
+  if (error)
+    return <ErrorState message={error} showHomeLink={true} onRetry={refetch} />;
+
   return (
     <>
       {/* {loading ? (
@@ -50,11 +35,7 @@ const Search = () => {
         </div>
         <div className={styles.movies}>
           {movies && movies.length > 0 ? (
-            <MovieGrid
-              movies={movies}
-              // toggleFavoriteMovies={toggleFavoriteMovies}
-              // favorites={favorites}
-            />
+            <MovieGrid movies={movies} />
           ) : (
             query && (
               <p className={styles.noResults}>

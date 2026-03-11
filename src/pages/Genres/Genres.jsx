@@ -8,6 +8,8 @@ import Footer from "../../components/Footer/Footer";
 import { useFavorites } from "../../context/FavoritesContext";
 
 import styles from "./Genres.module.css";
+import { useFetchMovies } from "../../hooks/useFetchMovies";
+import ErrorState from "../../components/ErrorState/ErrorState";
 
 const genreNames = {
   28: "Action",
@@ -31,34 +33,18 @@ const genreNames = {
   37: "Western",
 };
 const Genres = () => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("Erreur lors du chargement des films");
-  // const { favorites, toggleFavoriteMovies } = useFavorites();
-
   const { genreId } = useParams();
-
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
-  const [totalPages, setTotalPages] = useState(1);
+  const { movies, error, totalPages, refetch } = useFetchMovies(
+    () => getMoviesByGenre(genreId, page),
+    [genreId, page],
+  );
 
-  useEffect(() => {
-    const loadMoviesByGenre = async () => {
-      try {
-        setLoading(true);
-        const movies = await getMoviesByGenre(genreId, page);
-        setMovies(movies.results);
-        setTotalPages(movies.total_pages);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadMoviesByGenre();
-  }, [genreId, page]);
-  // console.log(error);
+  if (error)
+    return <ErrorState message={error} showHomeLink={true} onRetry={refetch} />;
+
   return (
     <>
       {/* {loading ? (
@@ -69,11 +55,7 @@ const Genres = () => {
           {genreNames[genreId] || "Films " + genreId}
         </div>
         <div className={styles.movies}>
-          <MovieGrid
-            movies={movies}
-            // toggleFavoriteMovies={toggleFavoriteMovies}
-            // favorites={favorites}
-          />
+          <MovieGrid movies={movies} />
         </div>
       </>
       {/* )} */}

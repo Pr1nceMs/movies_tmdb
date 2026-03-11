@@ -75,6 +75,8 @@ export const getMovieDetails = async (movieId) => {
   }
 
   const data = await response.json();
+  console.log(`Movie name is ${data.title}`);
+  console.log(`${data.title}'s overview is ${data.overview}`);
   return data;
 };
 

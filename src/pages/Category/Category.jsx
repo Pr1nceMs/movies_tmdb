@@ -7,6 +7,8 @@ import Footer from "../../components/Footer/Footer";
 import styles from "./Category.module.css";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import { useFavorites } from "../../context/FavoritesContext";
+import { useFetchMovies } from "../../hooks/useFetchMovies";
+import ErrorState from "../../components/ErrorState/ErrorState";
 
 const titles = {
   popular: "Films populaires",
@@ -16,34 +18,19 @@ const titles = {
   latest: "Films les plus récents",
 };
 const Category = () => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("Erreur lors du chargement des films");
-  // const { favorites, toggleFavoriteMovies } = useFavorites();
-
   const { type } = useParams();
 
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
-  const [totalPages, setTotalPages] = useState(1);
+  const { movies, error, totalPages, refetch } = useFetchMovies(
+    () => getMoviesByCategory(type, page),
+    [type, page],
+  );
 
-  useEffect(() => {
-    const loadMoviesByCategory = async () => {
-      try {
-        setLoading(true);
-        const movies = await getMoviesByCategory(type, page);
-        setMovies(movies.results);
-        setTotalPages(movies.total_pages);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadMoviesByCategory();
-  }, [type, page]);
-  // console.log(error);
+  if (error) {
+    return <ErrorState message={error} showHomeLink={true} onRetry={refetch} />;
+  }
   return (
     <>
       {/* {loading ? (
@@ -54,11 +41,7 @@ const Category = () => {
           {titles[type] || "Films " + type}
         </div>
         <div className={styles.movies}>
-          <MovieGrid
-            movies={movies}
-            // toggleFavoriteMovies={toggleFavoriteMovies}
-            // favorites={favorites}
-          />
+          <MovieGrid movies={movies} />
         </div>
       </>
       {/* )} */}
